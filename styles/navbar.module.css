@@ -1,0 +1,66 @@
+.NavStyle{
+    display: flex;
+    border-bottom: 1px #00B29A solid;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+  }
+  .logoStyle{
+    flex-shrink: 0;
+    font-weight: bold;
+    text-decoration: none;
+    color:black;
+    font-size: 40px;
+  }
+  .linkStyle{
+    text-decoration: none;
+    color:black;
+  }
+  .navbarItemsStyle{
+    display: flex;
+    align-items: center;
+  }
+  .signUpStyles{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding-right: 16px;
+  }
+  .loginButton{
+    height:40px;
+    padding-left: 18px;
+    padding-right: 18px;
+    width:auto;
+    border: 1px #00B29A solid;
+    background-color: white; 
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .loginButton:hover{
+    background-color: rgb(226, 226, 226);
+  }
+.signUpButton{
+  height:40px;
+  padding-left: 18px;
+  padding-right: 18px;
+  width:auto;
+  background-image: linear-gradient(to right, #40c057, #15aabf);
+  color:white;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 4px;
+  border:none;
+  cursor: pointer;
+}
+.signUpButton:hover{
+  background-image: linear-gradient(to left,  #40c057, #15aabf);
+}
+.signUpButton:active{
+  opacity: 0.8;
+}
