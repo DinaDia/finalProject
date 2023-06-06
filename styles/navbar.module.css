@@ -1,18 +1,12 @@
 .NavStyle{
     display: flex;
-    border-bottom: 1px #00B29A solid;
+    border-bottom: 1px #15aabf solid;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     height: 60px;
-  }
-  .logoStyle{
-    flex-shrink: 0;
-    font-weight: bold;
-    text-decoration: none;
-    color:black;
-    font-size: 40px;
+    z-index: 1150;
   }
   .linkStyle{
     text-decoration: none;
@@ -63,4 +57,8 @@
 }
 .signUpButton:active{
   opacity: 0.8;
+}
+.profilePictureStyle{
+  cursor: pointer;
+  margin-right: 5px;
 }

@@ -3,8 +3,14 @@ import Link from "next/link"
 import styles from "@/styles/navbar.module.css"
 import { useRouter } from "next/router"
 
-const NavBar = () => {
+const MainNavBar = () => {
   const router=useRouter();
+
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    router.push("/Users/UserSetting")
+
+  }
   return (
     <div className={styles.NavStyle}>
       <Link className={styles.logoStyle} href="/Homepage">
@@ -13,13 +19,12 @@ const NavBar = () => {
         <Link className={styles.linkStyle} href="/MarketPlace">MarketPlace</Link>
       </div>
 
-      <div className={styles.signUpStyles}>
-        <button className={styles.loginButton} onClick={()=>router.push("/Login")}>Log in</button>
-        <button className={styles.signUpButton} onClick={()=>router.push("/Signup")}>Sign up</button>
+      <div>
+        <Image onClick={handleSubmit} className={styles.profilePictureStyle} src="/user.jpg" width={50} height={50}></Image>
       </div>
 
     </div>
   )
 }
 
-export default NavBar
+export default MainNavBar

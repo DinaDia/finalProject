@@ -16,7 +16,7 @@ export default function Home() {
     </Head>
       <div className={styles.mainStyle}>
         <h1 className={styles.mainText}>Connect. Shop. Thrive. <span className={styles.FarmConnectStyle}>At FarmConnectET</span></h1>
-        <div className={styles.textStyle}> Connect with passionate farmers, shop for high quality products at prices suitable for you. 
+        <div className={styles.textStyle}> Sell your products, shop for high quality products at prices suitable for you. 
         Thrive as you support sustainable agriculture and local economies. </div> 
         <div className={styles.textStyle}>Join us to celebrate agricultural excellence.</div>
         <button className={styles.signUpButton} onClick={()=>router.push("/Signup")}>Get started</button>        

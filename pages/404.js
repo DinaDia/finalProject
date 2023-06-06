@@ -4,14 +4,14 @@ import { useEffect } from "react"
 
 const notFound = () => {
   const router=useRouter();
-    useEffect(()=>{
-      setTimeout(()=>{
-        // router.go(-1) basically backarrow. It is used to go between pages 
-        router.push('/');
-        // If its go(number) its based on the user exerince. 
-        // Push('/') directs them a specific page
-      }, 3000)
-    }, [])
+    // useEffect(()=>{
+    //   setTimeout(()=>{
+    //     // router.go(-1) basically backarrow. It is used to go between pages 
+    //     router.push('/');
+    //     // If its go(number) its based on the user exerince. 
+    //     // Push('/') directs them a specific page
+    //   }, 3000)
+    // }, [])
 
   return (
 
