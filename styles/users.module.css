@@ -1,18 +1,29 @@
+
+.farmerInfo{
+  display: grid;
+  background-color:#eaeaecdc;
+  padding: 25px 15px 25px 15px;
+  border:none;
+  border-radius: 10px;
+
+}
 .single {
-  padding: 5px 16px;
-  background: #fff;
-  display: block;
-  margin: 5px;
-  border-left: 8px solid #fff;
-}
-.single:hover {
-  border-left: 8px solid#40c057;
-}
-.linkStyle{
+  padding: 30px 10px;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  flex:auto;
+  align-items: center;
+  margin: 7px 20px;
   text-decoration: none;
   color:black;
   font-size: 16px;
   font-weight: bold;
+  border-radius: 10px;
+}
+.single:hover {
+  padding: 50px;
+  margin: 5px;
 }
 .headerTextStyle{
   text-align: center;
@@ -25,15 +36,18 @@
   margin-top: 50px;
 }
 .mainArea{
-  background-color: rgb(167, 89, 240);
   padding: 10px;
-  margin: 10px 50px;
+  margin: 10px 30px;
 }
-.farmerInfo{
-  background-color: red;
-  display: grid;
+.profilePictureStyle{
+  object-fit: cover;
+  margin-right: 20px;
 }
-.styles.profilePictureStyle{
-  width: 36px;
-  border-radius: 50px;
+.nameStyle{
+  font-size: 22px;
+  font-weight: bold;
+}
+.button{
+  float: right;
+    margin: 5px;
 }

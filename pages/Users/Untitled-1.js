@@ -10,7 +10,7 @@
     Marques Brownlee
   </p>
   <p class="video-stats">
-    3.4M views &#183; 6 months ago
+   d 3.4M views &#183; 6 months ago
   </p>
 </div>
 </div>

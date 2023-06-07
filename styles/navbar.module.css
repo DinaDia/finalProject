@@ -1,6 +1,6 @@
 .NavStyle{
     display: flex;
-    border-bottom: 1px #15aabf solid;
+    border-bottom: 3px #15aabf solid;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -8,13 +8,30 @@
     height: 60px;
     z-index: 1150;
   }
-  .linkStyle{
-    text-decoration: none;
-    color:black;
-  }
   .navbarItemsStyle{
+    box-sizing: border-box;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
+    height: 100%;
+    margin-left: -100px;
+  }
+
+  .navLinkStyle{
+    align-items: center;
+    text-decoration: none;
+    color:#777;
+    font-size: 20px;
+    font-weight: 600;
+    width: 150px;
+    margin: 15px;
+  }
+  .navLinkStyle:hover{
+    color: black;
+  }
+  .navLinkStyle :active{
+    color: #a7a3a3;
   }
   .signUpStyles{
     display: flex;
@@ -61,4 +78,5 @@
 .profilePictureStyle{
   cursor: pointer;
   margin-right: 5px;
+  padding-left: 160px;
 }
