@@ -8,7 +8,8 @@
             "Location": "Vauda Canavese",
             "ContactInfo": "1-829-734-2631",
             "DeliveryOption": "Local pickup",
-            "Ratings": 4
+            "Ratings": 4,
+            "Deals": 682
         },
         {
             "id":2,
@@ -18,7 +19,8 @@
             "Location": "Scorrano",
             "ContactInfo": "1-864-412-4946",
             "DeliveryOption": "Local pickup",
-            "Ratings": 1
+            "Ratings": 1,
+            "Deals": 9
         },
         {
             "id":3,
@@ -28,7 +30,8 @@
             "Location": "Santa Vittoria in Matenano",
             "ContactInfo": "1-581-716-7739",
             "DeliveryOption": "Home delivery ",
-            "Ratings": 1
+            "Ratings": 1,
+            "Deals": 51
         },
         {
             "id": 4,
@@ -38,7 +41,8 @@
             "Location": "Diano Arentino",
             "ContactInfo": "1-688-607-9577",
             "DeliveryOption": "Local pickup",
-            "Ratings": 4
+            "Ratings": 4,
+            "Deals": 100
         },
         {
             "id":5,
@@ -48,7 +52,8 @@
             "Location": "Lozzo Atestino",
             "ContactInfo": "1-355-333-3463",
             "DeliveryOption": "Local pickup",
-            "Ratings": 3
+            "Ratings": 3,
+            "Deals": 457
         }
     
     ]

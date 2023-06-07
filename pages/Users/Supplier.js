@@ -28,11 +28,11 @@ const Supplier = ({farmers}) => {
                     {farmers.map(farmer=>(
                         <Link href={'/Users/'+ farmer.id} key={farmer.id} className={styles.single}>
                             <Image className={styles.profilePictureStyle} src="/user.jpg" width={70} height={60}></Image>
-                            <div>
+                            <div className={styles.infoStyle}>
                                 <div className={styles.nameStyle}>{farmer.Name}</div>
                                 <div className={styles.ratingAndLocation}>
-                                    {farmer.Location}
-                                    {farmer.Ratings} stars
+                                    <div>Based at {farmer.Location} </div>
+                                    <div>{farmer.Ratings} stars ({farmer.Deals} deals) </div>
                                 </div>
                             </div>
                             <button className={styles.button}>Contact</button>

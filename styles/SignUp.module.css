@@ -124,13 +124,11 @@
     width: 900px;
     height: 500px;
     margin: auto;
-    background-color: red;
   }
   .productStyle{
-    background-color: blueviolet;
     border-radius: 10px;
     padding: 50px;
-    font-size: 14px;
+    font-size: 20px;
     width:auto;
     margin: 5px;
     display: block;

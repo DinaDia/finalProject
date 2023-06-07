@@ -21,7 +21,7 @@ const QuestionTwo = () => {
             <h1 className={styles.headerTextStyle}>Customize Your Preferences</h1>
             <div className={styles.productStyle}>
                 <div className={styles.productRowStyle}>
-                    <div className={styles.selectedProductStyle}></div>
+                    <div className={styles.selectedProductStyle}>Choose Products from a list </div>
                 </div>
             </div>
         </div>

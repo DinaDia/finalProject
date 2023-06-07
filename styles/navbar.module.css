@@ -1,12 +1,17 @@
 .NavStyle{
     display: flex;
-    border-bottom: 3px #15aabf solid;
+    border-bottom: 1px #15aabf solid;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     height: 60px;
     z-index: 1150;
+    margin: 0 -10px;
+  }
+  .logoStyle{
+    margin-left: 10px;
+    justify-content: center;
   }
   .navbarItemsStyle{
     box-sizing: border-box;

@@ -9,10 +9,9 @@
 }
 .single {
   padding: 30px 10px;
-  background: white;
+  background: white;    
   display: flex;
   flex-direction: row;
-  flex:auto;
   align-items: center;
   margin: 7px 20px;
   text-decoration: none;
@@ -20,6 +19,8 @@
   font-size: 16px;
   font-weight: bold;
   border-radius: 10px;
+  box-sizing: border-box;
+  position: relative;
 }
 .single:hover {
   padding: 50px;
@@ -41,13 +42,82 @@
 }
 .profilePictureStyle{
   object-fit: cover;
-  margin-right: 20px;
+  margin: 0 10px;
 }
 .nameStyle{
   font-size: 22px;
   font-weight: bold;
 }
+.infoStyle{
+  width: 965px;
+}
+.ratingAndLocation{
+  color:#777;
+}
+
 .button{
-  float: right;
-    margin: 5px;
+  padding-left: 18px;
+  padding-right: 18px;
+  width:170px;
+  height: 45px;
+  background-image: linear-gradient(to right, #40c057, #15aabf);
+  color:white;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 4px;
+  border:none;
+  cursor: pointer;
+  margin-right: 15px;
+  position: absolute;
+  right:10px
+}
+.button:hover{
+  background-image: linear-gradient(to left,  #40c057, #15aabf);
+}
+.button:active{
+  opacity: 0.8;
+}
+.farmerInfoBox{
+  border-bottom: 2px  #f1f3f4 solid;
+  margin: 20px -10px;
+  padding: 40px;
+}
+.mainAreaStyle{
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  padding:25px
+}
+.detailInfo{
+  display: flex;
+  margin-left: 50px;
+}
+.userInfoStyle{
+}
+.farmDescription{
+  max-width: 500px;
+  margin-left: 40px;
+  margin-top: 20px;
+}
+
+.contactButton{
+  width:170px;
+  height: 45px;
+  padding-left: 18px;
+  padding-right: 18px;
+  background-image: linear-gradient(to right, #40c057, #15aabf);
+  color:white;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 4px;
+  border:none;
+  cursor: pointer;
+  justify-content: center;
+}
+.contactButton:hover{
+  background-image: linear-gradient(to left,  #40c057, #15aabf);
+}
+.contactButton:active{
+  opacity: 0.8;
 }
