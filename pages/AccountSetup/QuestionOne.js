@@ -12,10 +12,10 @@ const QuestionOne = () => {
     const handleSubmit=(e)=>{
         e.preventDefault();
         if(userType === "Farmer" || userType ==="Both"){
-            router.push("/Questions/QuestionTwo")
+            router.push("/AccountSetup/QuestionTwo")
         }
         else{
-            router.push("/Homepage")
+            router.push("/Buyer")
         }
     }
 

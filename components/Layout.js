@@ -20,9 +20,9 @@ export const LayOut = ({children}) => {
   
   
   
-  else if(router.pathname!="/Login" && router.pathname !="/Signup"
-   && router.pathname !="/Questions/QuestionOne" 
-   && router.pathname !="/Questions/QuestionTwo"){
+  else if(router.pathname!="/AccountSetup/Login" && router.pathname !="/AccountSetup/Signup"
+   && router.pathname !="/AccountSetup/QuestionOne" 
+   && router.pathname !="/AccountSetup/QuestionTwo"){
   return (
     <div>
         <MainNavBar/>

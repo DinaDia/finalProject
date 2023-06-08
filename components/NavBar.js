@@ -10,16 +10,16 @@ const NavBar = () => {
       <Link className={styles.logoStyle} href="/Homepage">
         <Image src="/logo.jpg" height={55} width={220}></Image></Link>
       <div className={styles.navbarItemsStyle}>
-        <Link className={styles.navLinkStyle} href="/Products">Products</Link>
-        <Link className={styles.navLinkStyle} href="/Users/Supplier">Suppliers</Link>
-        <Link className={styles.navLinkStyle} href="/MarketPlace">Market place</Link>
-        <Link className={styles.navLinkStyle} href="/AboutUs">About us</Link>
+        <Link className={styles.navLinkStyle} href="/AccountSetup/Login">Products</Link>
+        <Link className={styles.navLinkStyle} href="/AccountSetup/Login">Suppliers</Link>
+        <Link className={styles.navLinkStyle} href="/AccountSetup/Login">Market analysis</Link>
+        <Link className={styles.navLinkStyle} href="/AccountSetup/Login">About us</Link>
 
       </div>
 
       <div className={styles.signUpStyles}>
-        <button className={styles.loginButton} onClick={()=>router.push("/Login")}>Log in</button>
-        <button className={styles.signUpButton} onClick={()=>router.push("/Signup")}>Sign up</button>
+        <button className={styles.loginButton} onClick={()=>router.push("/AccountSetup/Login")}>Log in</button>
+        <button className={styles.signUpButton} onClick={()=>router.push("/AccountSetup/Signup")}>Sign up</button>
       </div>
 
     </div>

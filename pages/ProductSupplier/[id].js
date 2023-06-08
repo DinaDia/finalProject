@@ -1,5 +1,8 @@
-import styles from '@/styles/users.module.css'
+import styles from '@/styles/supplier.module.css'
+import Head from 'next/head';
 import Image from 'next/image';
+import ReactStars from 'react-stars';
+
 export const getStaticPaths= async()=>{
   const res= await fetch('http://localhost:8000/farmers');
   const data= await res.json();
@@ -29,21 +32,27 @@ export const getStaticProps= async(context)=>{
 const SupplierDetails = ({farmer}) => {
   return (
     <div>
+      <Head>
+        <title>Supplier information | FarmConnectET</title>
+      </Head>
+
       <div className={styles.farmerInfoBox}>
         <div className={styles.mainAreaStyle}>
           <div>
             <div className={styles.detailInfo}>
               <Image className={styles.profilePictureStyle} src="/user.jpg" width={70} height={60}></Image>
               <div className={styles.userInfoStyle}>
-                <div>{farmer.Name}</div>
-                <div>
-                  <div>Based at {farmer.Location}</div>
-                  <div>{farmer.Ratings} stars ({farmer.Deals} deals) </div>
-                </div>
+                <div className={styles.nameStyle}>{farmer.Name}</div>
+                <div className={styles.locationStyle}>Based at {farmer.Location}</div>
               </div>     
-
-
             </div>  
+            <div className={styles.ratingAndDealStyle}> 
+                  <ReactStars className={styles.Ratings} count={5} size={25} value={farmer.Ratings}></ReactStars>
+                  <div className={styles.verticalLineStyle}>&#124;</div>
+                  <div className={styles.dealsAndProductStyle}>{farmer.Deals} deals </div>
+                  <div className={styles.verticalLineStyle}>&#124;</div>
+                  <div className={styles.dealsAndProductStyle}>Prime product : {farmer.Products}</div>
+            </div>
 
             <div className={styles.farmDescription}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tincidunt elit sit amet leo rhoncus vulputate.
@@ -52,12 +61,15 @@ const SupplierDetails = ({farmer}) => {
 
           </div>
 
-    
+          <button className={styles.contactButton}>Contact</button>   
 
-          <button className={styles.contactButton}>Contact</button>          
         </div>
 
         
+      </div>
+
+      <div className={styles.productList}>
+        <h1 className={styles.ProductHeaderTextStyle}>List of available products</h1>
       </div>
     </div>
   )

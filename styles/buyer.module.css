@@ -1,0 +1,11 @@
+
+.sideBarStyle {
+    position: fixed;
+    top: 55px;
+    background-color: blue;
+    width: 400px;
+    z-index: 200;
+    height:1000px;
+    padding-top: 5px;
+    margin: 14px -8px;
+  }

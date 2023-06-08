@@ -8,7 +8,7 @@ const MainNavBar = () => {
 
   const handleSubmit=(e)=>{
     e.preventDefault();
-    router.push("/Users/UserSetting")
+    router.push("/UserSetting")
 
   }
   return (
@@ -16,9 +16,10 @@ const MainNavBar = () => {
       <Link className={styles.logoStyle} href="/Homepage">
         <Image src="/logo.jpg" height={55} width={220}></Image></Link>
         <div className={styles.navbarItemsStyle}>
-          <Link className={styles.navLinkStyle} href="/Products">Products</Link>
-          <Link className={styles.navLinkStyle} href="/Users/Supplier">Suppliers</Link>
-          <Link className={styles.navLinkStyle} href="/MarketPlace">Market place</Link>
+          <Link className={styles.navLinkStyle} href="/Buyer/Products">Products</Link>
+          <Link className={styles.navLinkStyle} href="/ProductSupplier/Supplier">Suppliers</Link>
+          <Link className={styles.navLinkStyle} href="/MarketAnalysis">Market analysis</Link>
+          <Link className={styles.navLinkStyle} href="/Buyer/History">History</Link>
           <Link className={styles.navLinkStyle} href="/AboutUs">About us</Link>
 
         </div>

@@ -43,7 +43,7 @@ const Login = () => {
 
         <div className={styles.newAccountStyle}>
           <p className={styles.lastTextStyle}>
-            Don't have an account? <Link className={styles.linkStyle} href="/Signup">Sign up</Link>.
+            Don't have an account? <Link className={styles.linkStyle} href="/AccountSetup/Signup">Sign up</Link>.
           </p>
       </div>
       

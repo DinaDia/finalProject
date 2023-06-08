@@ -2,34 +2,42 @@
 .farmerInfo{
   display: grid;
   background-color:#eaeaecdc;
-  padding: 25px 15px 25px 15px;
+  padding: 15px 20px ;
   border:none;
   border-radius: 10px;
 
 }
 .single {
-  padding: 30px 10px;
+  padding: 15px 10px;
   background: white;    
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 7px 20px;
   text-decoration: none;
   color:black;
-  font-size: 16px;
-  font-weight: bold;
   border-radius: 10px;
   box-sizing: border-box;
   position: relative;
+  margin: auto;
+  margin: 7px 20px;
+
 }
 .single:hover {
-  padding: 50px;
+  padding: 30px;
   margin: 5px;
+}
+.farmerInfoBox{
+  margin: auto;
+  margin-top: 20px;
+  max-width: 1300px;
+  padding: 40px 40px 5px 40px; 
+  border-bottom: 3px #eaeaecdc solid;
 }
 .headerTextStyle{
   text-align: center;
   font-size: 40px;
   margin-top: 50px;
+  margin-bottom: 5px;
 }
 .SupplierHeaderTextStyle{
   text-align: center;
@@ -37,8 +45,8 @@
   margin-top: 50px;
 }
 .mainArea{
-  padding: 10px;
   margin: 10px 30px;
+  padding: 5px;
 }
 .profilePictureStyle{
   object-fit: cover;
@@ -48,13 +56,6 @@
   font-size: 22px;
   font-weight: bold;
 }
-.infoStyle{
-  width: 965px;
-}
-.ratingAndLocation{
-  color:#777;
-}
-
 .button{
   padding-left: 18px;
   padding-right: 18px;
@@ -76,31 +77,83 @@
 }
 .button:active{
   opacity: 0.8;
-}
-.farmerInfoBox{
-  border-bottom: 2px  #f1f3f4 solid;
-  margin: 20px -10px;
-  padding: 40px;
-}
+} 
 .mainAreaStyle{
   display: flex;
   justify-content: space-between;
   max-width: 1200px;
+  padding:25px 0;
   margin: auto;
-  padding:25px
-}
+} 
 .detailInfo{
   display: flex;
   margin-left: 50px;
+  
+}
+.nameStyle{
+  font-size: 20px;
+  font-weight:bold;
+  margin-bottom: 3px;
+}
+.locationStyle{
+  font-size: 15px;
+  color: #777;
+  margin-bottom: 3px;
+
 }
 .userInfoStyle{
+  padding:5px 30px 0 5px;
+  margin-top: 5px;
 }
 .farmDescription{
-  max-width: 500px;
+  max-width: 700px;
   margin-left: 40px;
-  margin-top: 20px;
+  font-size: 20px;
+}
+.verticalLine{
+  font-size: 28px;
+  color: #d1d1d1 ;
+  margin: -5px 10px 0 10px;
 }
 
+.verticalLineStyle{
+  font-size: 40px;
+  color: #d1d1d1 ;
+  margin: -10px 10px 0 10px;
+}
+
+.ratingAndDeal{
+  display: flex;
+  margin-left: 75px;
+  margin-top: 5px;
+  width:auto;
+}
+.ratingAndDealStyle{
+  display: flex;
+  margin-left: 75px;
+  margin-top: 3px;
+  width:auto;
+  padding: 10px 5px;
+}
+.dealsAndProduct{
+  text-align: center;
+  height:auto;
+  font-size: 16px;
+  margin-top: 4px;
+}
+.dealsAndProductStyle{
+  text-align: center;
+  height:auto;
+  font-size: 18px;
+  margin-top: 8px;
+}
+
+.Ratings{
+  text-align: center;
+  height:auto;
+  font-size: 18px;
+  margin-top: -2px;
+}
 .contactButton{
   width:170px;
   height: 45px;
@@ -113,11 +166,21 @@
   border-radius: 4px;
   border:none;
   cursor: pointer;
-  justify-content: center;
+  margin-top: 15px;
+  margin-right: 50px;
+
 }
 .contactButton:hover{
   background-image: linear-gradient(to left,  #40c057, #15aabf);
 }
 .contactButton:active{
   opacity: 0.8;
+}
+.productList{
+  background-color: blue;
+}
+.ProductHeaderTextStyle{
+  font-size: 35px;
+  margin: 25px 0px 0px 100px;
+  margin-bottom: 5px;
 }

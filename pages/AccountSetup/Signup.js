@@ -9,14 +9,13 @@ const Signup = () => {
 
   const router=useRouter();
   const [name, setName]=useState('');
-  const [phoneNo, setPhoneNo]=useState('');
   const [city, setCity]=useState('');
   const [email, setEmail]=useState('');
   const [passWord, setPassWord]=useState('');
 
   const handleSubmit=(e)=>{
     e.preventDefault();
-    router.push("/Questions/QuestionOne");
+    router.push("/AccountSetup/QuestionOne");
   }
   
   return (
@@ -33,11 +32,22 @@ const Signup = () => {
             <input className={styles.inputStyle} type="text"
             value={name} placeholder="Full name"
             onchange={(e)=>setName(e.target.value)}/>
+            
 
-            <label className={styles.labelStyle}>Phone number</label>
+            <label className={styles.labelStyle}>Location</label>
+            <select className={styles.optionStyle} value={city}
+            onChange={(e)=>setCity(e.target.city)}>
+                <option hidden>Select Select city</option>
+                <option value="AA">Addis Ababa</option>
+                <option value="Gonder">Gonder</option>
+                <option value="Hawassa">Hawassa</option>
+            </select>
+
+
+            <label className={styles.labelStyle}>Email address</label>
             <input className={styles.inputStyle} type="number"
-            value={phoneNo}  placeholder="Phone number"
-            onchange={(e)=>setPhoneNo(e.target.value)}/>
+            value={email}  placeholder="Email address"
+            onchange={(e)=>setEmail(e.target.value)}/>
 
             <label className={styles.labelStyle}>Password</label>
             <input className={styles.inputStyle} type="text"
@@ -52,7 +62,7 @@ const Signup = () => {
 
         <div className={styles.newAccountStyle}>
           <p className={styles.lastTextStyle}>
-            Already have an account? <Link className={styles.linkStyle} href="/Login">Log in</Link>.
+            Already have an account? <Link className={styles.linkStyle} href="/AccountSetup/Login">Log in</Link>.
           </p>
       </div>
       

@@ -19,7 +19,7 @@ export default function Home() {
         <div className={styles.textStyle}> Sell your products, shop for high quality products at prices suitable for you. 
         Thrive as you support sustainable agriculture and local economies. </div> 
         <div className={styles.textStyle}>Join us to celebrate agricultural excellence.</div>
-        <button className={styles.signUpButton} onClick={()=>router.push("/Signup")}>Get started</button>        
+        <button className={styles.signUpButton} onClick={()=>router.push("/AccountSetup/Signup")}>Get started</button>        
       </div>
     </>
     )
