@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const dotenv=require('dotenv').config()
 const path = require("path");
 const methodOverride = require("method-override");
 const session=require('express-session')
@@ -19,6 +20,7 @@ const farmerRoutes=require('./routes/farmer')
 const marketRoutes=require('./routes/market')
 
 const app = express();
+const PORT=process.env.PORT || 3000
 const sessionConfig={
   secret:'thisshouldbeasecret',
   resave:false,
@@ -43,7 +45,7 @@ passport.serializeUser(Farmer.serializeUser())
 passport.deserializeUser(Farmer.deserializeUser())
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/05", {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -68,6 +70,6 @@ mongoose
     const {statusCode=500,message="something went wrong"}=err
     res.status(statusCode).send(message)
   })
-  app.listen(3000, () => {
+  app.listen(PORT, () => {
     console.log("listening on port 3000");
   });
