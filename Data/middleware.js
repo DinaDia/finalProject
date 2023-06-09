@@ -13,3 +13,13 @@ module.exports.geocode=async (address)=> {
         return null;
       }
   }
+  module.exports.isLoggedIn = (req, res, next) => {
+    if (!req.isAuthenticated()) {
+    //   req.session.returnTo=req.originalUrl
+    //   return res.redirect("/farmer/login");
+    res.status(402)
+    throw new Error("please login")
+    }
+    // req.user=user
+    next()
+  };
