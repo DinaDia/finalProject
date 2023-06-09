@@ -8,6 +8,7 @@ const LocalStrategy=require('passport-local')
 const flash=require('connect-flash')
 const Geocoder = require('nominatim-geocoder');
 const geolib=require('geolib')
+const axios = require('axios');
 
 const catchAsync=require('./utils/catchAsync')
 const ExpressError=require('./utils/ExpressError')
