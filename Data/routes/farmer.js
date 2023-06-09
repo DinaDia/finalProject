@@ -107,14 +107,25 @@ router.post("/signup", async (req, res, next) => {
       });
  
 });
+
+
+router.post('/login',passport.authenticate('farmer',{failureRedirect:'/farmer/login',keepSessionInfo:true}),async(req,res,next)=>{
+const farmer=await Farmer.findById(req.user._id)
+res.status(200).json({farmer})
+})
+
 router.get('/getFarmer',isLoggedIn,async(req,res,next)=>{
   const farmer=await Farmer.findById(req.user._id)
   res.status(200).json({farmer})
 })
 
-router.post('/login',passport.authenticate('local',{failureRedirect:'/farmer/login',keepSessionInfo:true}),async(req,res,next)=>{
-const farmer=await Farmer.findById(req.user._id)
-res.status(200).json({farmer})
+router.get('/logout',(req,res,next)=>{
+  req.session.passport=null
+  res.status(200).json({
+    message:"successfully logged out"
+  })
+  
+  // res.redirect('/')
 })
 
 

@@ -13,11 +13,14 @@ const axios = require('axios');
 
 const catchAsync=require('./utils/catchAsync')
 const ExpressError=require('./utils/ExpressError')
+
 const Farmer=require('./models/farmer')
+const Customer=require('./models/customer')
 const MarketData=require('./models/market')
 
 const farmerRoutes=require('./routes/farmer')
 const marketRoutes=require('./routes/market')
+const customerRoutes=require('./routes/customer')
 
 const app = express();
 const PORT=process.env.PORT || 3000
@@ -40,9 +43,43 @@ app.use(session(sessionConfig))
 app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
-passport.use(new LocalStrategy(Farmer.authenticate()))
-passport.serializeUser(Farmer.serializeUser())
-passport.deserializeUser(Farmer.deserializeUser())
+passport.use('farmer', new LocalStrategy(Farmer.authenticate()));
+passport.use('customer', new LocalStrategy(Customer.authenticate()));
+
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  let foundUser = null;
+  Farmer.findById(id)
+    .then(farmer => {
+      if (farmer) {
+        foundUser = farmer;
+        return Promise.resolve(farmer);
+      } else {
+        return Customer.findById(id);
+      }
+    })
+    .then(customer => {
+      if (customer) {
+        foundUser = customer;
+        return Promise.resolve(customer);
+      } else {
+        return Promise.reject(new Error('User not found'));
+      }
+    })
+    .then(user => {
+      done(null, foundUser);
+    })
+    .catch(err => {
+      done(err, null);
+    });
+});
+
+
+
 
 mongoose
   .connect(process.env.MONGO_URI, {
@@ -58,6 +95,7 @@ mongoose
 
   app.use('/farmer',farmerRoutes)
   app.use('/market',marketRoutes)
+  app.use('/customer',customerRoutes)
 
 
   app.get("/", (req, res) => {

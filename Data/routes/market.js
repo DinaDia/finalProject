@@ -7,7 +7,7 @@ const ExpressError=require('../utils/ExpressError')
 
 const MarketData=require('../models/market')
 
-const {geocode}=require('../middleware')
+const {geocode,isLoggedIn}=require('../middleware')
 
 router.post("/addmarket",catchAsync(async (req, res, next) => {
     const { name, location, price } = req.body;
