@@ -8,8 +8,9 @@ const ExpressError = require("../utils/ExpressError");
 
 const Customer = require("../models/customer");
 const MarketData = require("../models/market");
+const Farmer = require("../models/farmer");
 
-const { geocode,isLoggedIn} = require("../middleware");
+const { geocode, isLoggedIn } = require("../middleware");
 
 router.post("/signup", async (req, res, next) => {
   const { firstName, lastName, email, location, username, password } = req.body;
@@ -62,7 +63,8 @@ router.post("/signup", async (req, res, next) => {
   });
 });
 
-router.post("/login",
+router.post(
+  "/login",
   passport.authenticate("customer", {
     failureRedirect: "/farmer/login",
     keepSessionInfo: true,
@@ -76,13 +78,65 @@ router.get("/getCustomer", isLoggedIn, async (req, res, next) => {
   const customer = await Customer.findById(req.user._id);
   res.status(200).json({ customer });
 });
-router.get('/logout',(req,res,next)=>{
-    req.session.passport=null
-    res.status(200).json({
-      message:"successfully logged out"
-    })
-    
-    // res.redirect('/')
-  })
+router.get("/logout", (req, res, next) => {
+  req.session.passport = null;
+  res.status(200).json({
+    message: "successfully logged out",
+  });
+
+  // res.redirect('/')
+});
+
+router.get("/getCustomer", isLoggedIn, async (req, res, next) => {
+  const customer = await Customer.findById(req.user._id);
+  res.status(200).json({ customer });
+});
+
+router.get("/posts", async (req, res, next) => {
+  const { productName } = req.query;
+  const { coordinates } = req.user.location;
+  // res.json(coordinates)
+  const query = {
+    productListing: {
+      $elemMatch: { type: productName },
+    },
+  };
+
+  const farmers = await Farmer.find(query).exec();
+  // res.json(farmers)
+  const farmersWithDistances = [];
+  async function calculateRoutingDistance(origin, destination) {
+    try {
+      const url = `http://router.project-osrm.org/route/v1/driving/${origin.longitude},${origin.latitude};${destination.longitude},${destination.latitude}`;
+      const response = await axios.get(url);
+      const route = response.data.routes[0];
+      return route.distance; // Distance in meters
+    } catch (error) {
+      // Handle distance calculation error
+      console.error("Error calculating routing distance:", error);
+      throw error; // Rethrow the error to be handled by the caller
+    }
+  }
+  for (const farmer of farmers) {
+    const farmerCoordinates = farmer.location.coordinates;
+
+    const distance = await calculateRoutingDistance(
+      { latitude: coordinates[1], longitude: coordinates[0] },
+      { latitude: farmerCoordinates[1], longitude: farmerCoordinates[0] }
+    );
+
+    farmersWithDistances.push({
+      farmer,
+      distance,
+    });
+  }
+  // res.json(farmersWithDistances)
+  farmersWithDistances.sort((a, b) => a.distance - b.distance);
+  const products = farmersWithDistances
+    .map(({ farmer }) => farmer.productListing)
+    .flat();
+  // console.log(products)
+  res.json(products);
+});
 
 module.exports = router;

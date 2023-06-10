@@ -39,6 +39,23 @@ const FarmerSchema = new Schema({
   products: [{
     name: { type: String, required: true },
   }],
+  productListing: [
+    {
+      type: {
+        type: String,
+        required: true,
+      },
+      quantity: {
+        type: Number,
+        required: true,
+      },
+      price: {
+        type: Number,
+        required: true,
+      },
+      // Additional product details as needed
+    },
+  ],
 });
 
 // Add the passport-local-mongoose plugin to the FarmerSchema
