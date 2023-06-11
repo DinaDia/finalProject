@@ -87,10 +87,7 @@ router.get("/logout", (req, res, next) => {
   // res.redirect('/')
 });
 
-router.get("/getCustomer", isLoggedIn, async (req, res, next) => {
-  const customer = await Customer.findById(req.user._id);
-  res.status(200).json({ customer });
-});
+
 
 router.get("/posts", async (req, res, next) => {
   const { productName } = req.query;
@@ -101,7 +98,6 @@ router.get("/posts", async (req, res, next) => {
       $elemMatch: { type: productName },
     },
   };
-
   const farmers = await Farmer.find(query).exec();
   // res.json(farmers)
   const farmersWithDistances = [];
