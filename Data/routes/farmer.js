@@ -140,4 +140,50 @@ router.get("/logout", (req, res, next) => {
   // res.redirect('/')
 });
 
+router.get("/marketdata",isLoggedIn, async (req, res) => {
+  // Retrieve all market data documents from the database
+  const marketData = await MarketData.find();
+  const productName = req.query.productName;
+  const quantity = req.query.quantity;
+  if (productName && quantity) {
+    // Find the selected product in the market data based on the name attribute
+    const selectedProduct = marketData.find(product => product.name === productName);
+
+    if (!selectedProduct) {
+      // Handle case when the product is not found
+      return res.status(400).json({ error: "Product not found" });
+    }
+    const potentialProfits = selectedProduct.locations.map(location => {
+      const marketName = location.name;
+      const marketDistance = req.user.marketDistances.get(`${selectedProduct.name}-${marketName}`)/1000;
+      const transportationCost =  marketDistance;
+      const qtyTransport=marketDistance * quantity/100
+      const marketPrice = location.price;
+      const potentialProfit = (marketPrice  * quantity)- (transportationCost+qtyTransport);
+      return {
+        product: selectedProduct.name,
+        marketplace: marketName,
+        price:location.price,
+        profit: potentialProfit,
+      };
+
+    });
+    potentialProfits.sort((a, b) => b.profit - a.profit);
+
+    // Send the potential profits as a JSON response
+    res.status(200).json({ data: potentialProfits });
+  }else {
+    // Sort the locations within each market data document based on the distance from the farmer's location
+    marketData.forEach(market => {
+      market.locations.sort((a, b) => {
+        const distanceA = req.user.marketDistances.get(`${market.name}-${a.name}`);
+        const distanceB = req.user.marketDistances.get(`${market.name}-${b.name}`);
+        return distanceA - distanceB;
+      });
+    });
+
+    // Send the sorted market data as a JSON response
+    res.status(200).json({ data: marketData });
+  }    
+});
 module.exports = router;
