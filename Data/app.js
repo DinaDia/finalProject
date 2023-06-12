@@ -23,7 +23,7 @@ const marketRoutes=require('./routes/market')
 const customerRoutes=require('./routes/customer')
 
 const app = express();
-const PORT=process.env.PORT || 3000
+const PORT=process.env.PORT || 8000
 const sessionConfig={
   secret:'thisshouldbeasecret',
   resave:false,
@@ -110,5 +110,5 @@ mongoose
     res.status(statusCode).send(message)
   })
   app.listen(PORT, () => {
-    console.log("listening on port 3000");
+    console.log("listening on port 8000");
   });

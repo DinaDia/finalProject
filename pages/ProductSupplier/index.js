@@ -1,7 +1,7 @@
 
 const index = () => {
   return (
-    <div>List of close market place </div>
+    <div>Buyer landing page</div>
   )
 }
 
