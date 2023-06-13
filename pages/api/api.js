@@ -10,3 +10,11 @@ export default async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
+
+
+// export async function fetchData(url, options = {}) {
+//   const response = await fetch(url, options);
+//   const data = await response.json();
+//   return data;
+// }

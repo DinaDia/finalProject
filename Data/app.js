@@ -89,9 +89,6 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    app.listen(PORT, () => {
-      console.log(`listening on port ${PORT}`);
-    });
     console.log("CONNECTED");
   })
   .catch((e) => {
@@ -113,4 +110,6 @@ mongoose
     const {statusCode=500,message="something went wrong"}=err
     res.status(statusCode).send(message)
   })
- 
+  app.listen(PORT, () => {
+    console.log(`listening on port ${PORT}`);
+  });

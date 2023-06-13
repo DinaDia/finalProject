@@ -27,7 +27,7 @@ const Supplier = ({farmers}) => {
             <div className={styles.mainArea}>
                 <div className={styles.farmerInfo}>
                     {farmers.map(farmer=>(
-                        <Link href={'/ProductSupplier/'+ farmer.id} key={farmer.id} className={styles.single}>
+                        <Link href={'/Buyer/'+ farmer.id} key={farmer.id} className={styles.single}>
                             <div>
                                 <div className={styles.detailInfo}>
                                 <Image className={styles.profilePictureStyle} src="/user.jpg" width={70} height={60}></Image>

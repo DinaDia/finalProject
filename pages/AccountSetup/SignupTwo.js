@@ -5,18 +5,13 @@ import { useRouter } from 'next/router'
 import { useState } from 'react';
 
 
-const QuestionOne = () => {
-    const router=useRouter();
+const SignupTwo = ({secondSubmit}) => {
     const [userType, setUserType]=useState();
 
     const handleSubmit=(e)=>{
         e.preventDefault();
-        if(userType === "Farmer" || userType ==="Both"){
-            router.push("/AccountSetup/QuestionTwo")
-        }
-        else{
-            router.push("/Buyer")
-        }
+        secondSubmit(userType);
+        
     }
 
   return (
@@ -37,10 +32,11 @@ const QuestionOne = () => {
                 <option hidden>Select the one that applies to you</option>
                 <option value="Consumer">To buy products</option>
                 <option value="Farmer">To sell products</option>
+                <option value="Material">To sell agriculture material</option>
                 <option value="Both">Both</option>
             </select>
             <button className={styles.loginButton}
-            onClick={handleSubmit}>Submit</button>
+            onClick={handleSubmit}>Next</button>
             </form>
 
         </div>
@@ -50,4 +46,4 @@ const QuestionOne = () => {
   )
 }
 
-export default QuestionOne
+export default SignupTwo
