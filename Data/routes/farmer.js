@@ -143,6 +143,7 @@ router.get("/logout", (req, res, next) => {
 router.get("/marketdata",isLoggedIn, async (req, res) => {
   // Retrieve all market data documents from the database
   const marketData = await MarketData.find();
+
   const productName = req.query.productName;
   const quantity = req.query.quantity;
   if (productName && quantity) {
@@ -156,10 +157,13 @@ router.get("/marketdata",isLoggedIn, async (req, res) => {
     const potentialProfits = selectedProduct.locations.map(location => {
       const marketName = location.name;
       const marketDistance = req.user.marketDistances.get(`${selectedProduct.name}-${marketName}`)/1000;
+      // console.log(marketDistance)
       const transportationCost =  marketDistance;
       const qtyTransport=marketDistance * quantity/100
+      // console.log(qtyTransport)
       const marketPrice = location.price;
       const potentialProfit = (marketPrice  * quantity)- (transportationCost+qtyTransport);
+      // console.log(potentialProfit)
       return {
         product: selectedProduct.name,
         marketplace: marketName,

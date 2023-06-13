@@ -33,6 +33,6 @@ const MarketDataSchema=new Schema({
 
 MarketDataSchema.index({ 'locations.location': '2dsphere' });
 
-const MarketData = mongoose.model('MarketData', MarketDataSchema);
 
+const MarketData = mongoose.model('MarketData', MarketDataSchema);
 module.exports = MarketData;
