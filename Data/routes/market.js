@@ -9,7 +9,7 @@ const MarketData=require('../models/market')
 
 const {geocode,isLoggedIn}=require('../middleware')
 
-router.post("/addmarket",catchAsync(async (req, res, next) => {
+router.post("/addmarket",(async (req, res, next) => {
     const { name, location, price } = req.body;
   
     let marketData = await MarketData.findOne({ name });

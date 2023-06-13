@@ -23,7 +23,7 @@ const marketRoutes=require('./routes/market')
 const customerRoutes=require('./routes/customer')
 
 const app = express();
-const PORT=process.env.PORT || 3000
+const PORT=process.env.PORT || 8000
 const sessionConfig={
   secret:'thisshouldbeasecret',
   resave:false,
@@ -80,10 +80,11 @@ passport.deserializeUser(function(id, done) {
 
 
 
-// process.env.MONGO_URI
+// 
+// "mongodb://127.0.0.1:27017/final"
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/final", {
+  .connect(process.env.MONGO_URI , {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
