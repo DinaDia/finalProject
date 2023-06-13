@@ -1,39 +1,24 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
-export default function Home() {
-  const [users, setUsers] = useState([]);
-
+export default function MyComponent() {
   useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await axios.get('http://localhost:3001/api/users');
-      setUsers(response.data);
-    };
-
-    fetchUsers();
+    fetch('/api/check-auth')
+      .then(response => {
+        if (response.ok) {
+          // User is authenticated
+          // Perform actions for authenticated users
+          console.log('User is authenticated');
+        } else {
+          // User is not authenticated
+          // Redirect to login page or show an error message
+          console.log('User is not authenticated');
+        }
+      })
+      .catch(error => {
+        // Handle any errors that occur during the request
+        console.error('Error checking authentication:', error);
+      });
   }, []);
 
-  return (
-    <div>
-      <h1>User List</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Age</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.name}</td>
-              <td>{user.age}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+  return <div>My Component</div>;
 }

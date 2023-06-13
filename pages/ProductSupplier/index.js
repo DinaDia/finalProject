@@ -1,7 +1,7 @@
 
 const index = () => {
   return (
-    <div>Buyer landing page</div>
+    <div>Supplier landing page</div>
   )
 }
 

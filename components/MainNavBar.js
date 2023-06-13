@@ -17,9 +17,9 @@ const MainNavBar = () => {
         <Image src="/logo.jpg" height={55} width={220}></Image></Link>
         <div className={styles.navbarItemsStyle}>
           <Link className={styles.navLinkStyle} href="/Buyer/Products">Products</Link>
-          <Link className={styles.navLinkStyle} href="/Buyer/Supplier">Suppliers</Link>
+          <Link className={styles.navLinkStyle} href="/AgriMaterials">Agriculture Materials</Link>
           <Link className={styles.navLinkStyle} href="/MarketAnalysis">Market analysis</Link>
-          <Link className={styles.navLinkStyle} href="/Buyer/History">History</Link>
+          <Link className={styles.navLinkStyle} href="/ProductSupplier/History">History</Link>
           <Link className={styles.navLinkStyle} href="/AboutUs">About us</Link>
 
         </div>
