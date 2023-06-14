@@ -1,9 +1,7 @@
-import styles from '@/styles/buyer.module.css';
-import Head from 'next/head';
-import { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import ReactStars from 'react-stars';
+import styles from '@/styles/buyer.module.css'
+import Head from 'next/head'
+import { useState } from 'react'
+import Image from 'next/image'
 
 export const getStaticProps=async()=>{
 
@@ -12,22 +10,17 @@ export const getStaticProps=async()=>{
 
     const resOne=await fetch('http://localhost:8000/availableProducts');
     const dataOne=await resOne.json();
-
-    const resTwo=await fetch('http://localhost:8000/productType');
-    const dataTwo=await resTwo.json();
-
     return{
         props: {
             products: data,
-            availableProducts: dataOne,
-            productTypes:dataTwo
+            availableProducts: dataOne
         },
     };
   }
 
 
 
-const Products = ({products, availableProducts, productTypes}) => {
+const Products = ({products, availableProducts}) => {
 
     const [product, setProduct]=useState();
     const [quantity, setQuantity]=useState();
@@ -98,9 +91,9 @@ const Products = ({products, availableProducts, productTypes}) => {
              <select className={styles.multipleOptionStyle}>
                 <option hidden>Select Product Type</option>
 
-                {productTypes.map((productType, index)=>{
+                {products.map((product, index)=>{
                     return(
-                        <option className={styles.optionStyle} key={index} value={productType.id}>{productType.name}</option>
+                        <option className={styles.optionStyle} key={index} value={product.value}>{product.textValue}</option>
                     )
                 })}
 
@@ -109,41 +102,20 @@ const Products = ({products, availableProducts, productTypes}) => {
 
             </div>
 
-
-            <div className={styles.farmerInfo}>
-                    {availableProducts.map(availableProduct=>(
-                        <Link href={'/Buyer/'+ availableProduct.supplierId} key={availableProduct.id} className={styles.single}>
-                            <div>
-                                <div className={styles.productInfo}>
-                                <Image className={styles.pictureStyle} src={availableProduct.src} width={120} height={120}></Image>
-                                <div className={styles.productInfoStyle}>
-                                    <div className={styles.productNameStyle}>{availableProduct.name}</div>
-                                    <div className={styles.locationStyle}>Crop origin:  {availableProduct.Location}</div>
-
-
-                                    <div className={styles.productRatingAndDeal}> 
-                                        <div className={styles.dealsAndProduct}>{availableProduct.supplier}</div>
-                                        <div className={styles.verticalLine}>&#124;</div>
-                                        <div className={styles.dealsAndProduct}>{availableProduct.Deals} deals </div>
-                                        <div className={styles.verticalLine}>&#124;</div>
-                                        <div className={styles.dealsAndProduct}>{availableProduct.availability} available</div>
-                                </div>
-                                </div>   
-
-                                  
-                                </div>  
-
-                                
-                            </div>
-
+            <div className={styles.listOfProductStyle}>
+                {availableProducts.map((availableProduct)=>{
+                     return(
+                        <div className={styles.individualProduct}>
+                            <Image className={styles.pictureStyle} src={availableProduct.src} width={120} height={120}></Image>
+                            <div className={styles.productInfo}>{availableProduct.name}</div>
                             
-                            <div className={styles.priceStyle}>{availableProduct.price} birr/kg</div>
+                        </div>
+                    )
+                })}
 
             
+            </div>
 
-                        </Link>
-                    ))}
-                </div>
         </div>
     </div>
   )

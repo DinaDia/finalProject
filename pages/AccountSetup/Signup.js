@@ -73,8 +73,7 @@ const Signup = () => {
   const getMainProduct=(mainProduct)=>{
     setPrimeProduct(mainProduct);
 
-    const farmer={userName, userCity, userEmail, userPassWord,
-       userSignupType, products, primeProduct}
+    const farmer={userName, userCity, userEmail, userPassWord, products, primeProduct}
 
        fetch('http://localhost:8000/farmers',{
         method: 'POST',

@@ -1,186 +1,204 @@
+.mainStyle{
+  padding: 70px 50px 100px 50px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-.farmerInfo{
-  display: grid;
-  background-color:#eaeaecdc;
-  padding: 15px 20px ;
-  border:none;
-  border-radius: 10px;
-
-}
-.single {
-  padding: 15px 10px;
-  background: white;    
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  text-decoration: none;
-  color:black;
-  border-radius: 10px;
-  box-sizing: border-box;
-  position: relative;
-  margin: auto;
-  margin: 7px 20px;
-
-}
-.single:hover {
-  padding: 30px;
-  margin: 5px;
-}
-.farmerInfoBox{
-  margin: auto;
-  margin-top: 20px;
-  max-width: 1300px;
-  padding: 40px 40px 5px 40px; 
-  border-bottom: 3px #eaeaecdc solid;
-}
-.headerTextStyle{
-  text-align: center;
-  font-size: 40px;
-  margin-top: 50px;
+.mainText{
+  font-size: 65px;
+  font-weight: 900px;
+  margin-top: 0;
+  margin-left: 50px;
   margin-bottom: 5px;
 }
-.SupplierHeaderTextStyle{
-  text-align: center;
-  font-size: 35px;
-  margin-top: 50px;
+.FarmConnectStyle{
+  background: -webkit-linear-gradient(45deg, #40c057, #15aabf);
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent;
+  font-size: 65px;
 }
+.introStyle{
+  font-size: 18px;
+  margin:auto;
+  margin-top: -5px;
+  margin-bottom: 35px;
+  width: 650px;
+
+}
+
+.textStyle{
+  color:#868e96;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  font-size: 23px;
+
+}
+
+.signUpButton{
+  margin-top: 50px;
+  height:auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width:auto;
+  background-image: linear-gradient(to right, #40c057, #15aabf);
+  color:white;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 4px;
+  border:none;
+  cursor: pointer;
+  margin-left: auto;
+}
+.signUpButton:hover{
+  background-image: linear-gradient(to left,#40c057, #15aabf);
+}
+.signUpButton:active{
+  opacity: 0.8;
+}
+
+.sideBarStyle {
+    position: absolute;
+    top: 70px;
+    width: 420px;
+    height: 100%;
+    z-index: 200;
+    padding-top: 5px;
+    margin-left:  -8px;
+    overflow: auto;
+    box-sizing: border-box;
+    
+  }
+  .sampleContent{
+    height: 2000px;
+    margin-left: 400px;
+    border-left: 2px #eaeaecdc solid ;
+  }
+  .formStyle{
+    display: block;
+    margin-left: 20px;
+    margin-top: 150px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    border: 1px solid #f3f5f7;
+    max-width: 320px;
+}
+.labelStyle{
+    display: inline-block;
+    margin-bottom: 8px;
+    text-align: left;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1.5;
+    box-sizing: border-box;
+}
+.inputStyle{
+    margin-top: 4px;
+    margin-bottom: 12px;
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 2px solid #dee2e6;
+    cursor: default;
+}
+
+.optionStyle{
+    margin-top: 4px;
+    margin-bottom: 12px;
+    display: block;
+    width: 100%;
+    padding: 14px ;
+    font-size: 15px;
+    color:grey;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 2px solid #dee2e6;
+    cursor: default;
+}
+
+.loginButton{
+    height:auto;
+    margin-top: 15px;
+    padding: 12px 18px 12px 18px;
+    width:100%;
+    background-image: linear-gradient(to right, #40c057, #15aabf);
+    color:white;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 4px;
+    border:none;
+    cursor: pointer;
+  }
+  .loginButton:hover{
+    background-image: linear-gradient(to left,  #40c057, #15aabf);
+  }
+  .loginButton:active{
+    opacity: 0.8;
+  }
+
+  .marketPlaceInfo{
+    margin-top: 3px;
+    display: grid;
+    background-color:#eaeaecdc;
+    padding: 20px 15px ;
+    border:none;
+    border-radius: 10px;
+  
+  }
+  .single {
+    padding: 15px 20px;
+    background: white;    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    color:black;
+    border-radius: 10px;
+    box-sizing: border-box;
+    position: relative;
+    margin: auto;
+    margin: 7px 20px;
+  
+  }
+  .single:hover {
+    padding: 30px;
+    margin: 5px;
+  }
+  .headerTextStyle{
+    text-align: center;
+    font-size: 40px;
+    margin-top: 50px;
+    margin-bottom: 5px;
+  }
+  .SupplierHeaderTextStyle{
+    text-align: center;
+    font-size: 35px;
+    margin-top: 50px;
+  }
+  
+  
 .mainArea{
   margin: 10px 30px;
   padding: 5px;
 }
-.profilePictureStyle{
-  object-fit: cover;
-  margin: 0 10px;
-}
 .nameStyle{
   font-size: 22px;
   font-weight: bold;
+  margin-left: 10px;
 }
-.button{
-  padding-left: 18px;
-  padding-right: 18px;
-  width:170px;
-  height: 45px;
-  background-image: linear-gradient(to right, #40c057, #15aabf);
-  color:white;
-  font-weight: bold;
+
+.profitAndPrice{
+  height:auto;
   font-size: 18px;
-  border-radius: 4px;
-  border:none;
-  cursor: pointer;
-  margin-right: 15px;
-  position: absolute;
-  right:10px
-}
-.button:hover{
-  background-image: linear-gradient(to left,  #40c057, #15aabf);
-}
-.button:active{
-  opacity: 0.8;
-} 
-.mainAreaStyle{
-  display: flex;
-  justify-content: space-between;
-  max-width: 1200px;
-  padding:25px 0;
-  margin: auto;
-} 
-.detailInfo{
-  display: flex;
-  margin-left: 50px;
+  margin-top: 4px;
+  margin-left: 20px;
+  color:#7e848a;
   
 }
-.nameStyle{
-  font-size: 20px;
-  font-weight:bold;
-  margin-bottom: 3px;
-}
-.locationStyle{
-  font-size: 15px;
-  color: #777;
-  margin-bottom: 3px;
-
-}
-.userInfoStyle{
-  padding:5px 30px 0 5px;
-  margin-top: 5px;
-}
-.farmDescription{
-  max-width: 700px;
-  margin-left: 40px;
-  font-size: 20px;
-}
-.verticalLine{
-  font-size: 28px;
-  color: #d1d1d1 ;
-  margin: -5px 10px 0 10px;
-}
-
-.verticalLineStyle{
-  font-size: 40px;
-  color: #d1d1d1 ;
-  margin: -10px 10px 0 10px;
-}
-
-.ratingAndDeal{
-  display: flex;
-  margin-left: 75px;
-  margin-top: 5px;
-  width:auto;
-}
-.ratingAndDealStyle{
-  display: flex;
-  margin-left: 75px;
-  margin-top: 3px;
-  width:auto;
-  padding: 10px 5px;
-}
-.dealsAndProduct{
-  text-align: center;
-  height:auto;
-  font-size: 16px;
-  margin-top: 4px;
-}
-.dealsAndProductStyle{
-  text-align: center;
-  height:auto;
-  font-size: 18px;
-  margin-top: 8px;
-}
-
-.Ratings{
-  text-align: center;
-  height:auto;
-  font-size: 18px;
-  margin-top: -2px;
-}
-.contactButton{
-  width:170px;
-  height: 45px;
-  padding-left: 18px;
-  padding-right: 18px;
-  background-image: linear-gradient(to right, #40c057, #15aabf);
-  color:white;
-  font-weight: bold;
-  font-size: 18px;
-  border-radius: 4px;
-  border:none;
-  cursor: pointer;
-  margin-top: 15px;
-  margin-right: 50px;
-
-}
-.contactButton:hover{
-  background-image: linear-gradient(to left,  #40c057, #15aabf);
-}
-.contactButton:active{
-  opacity: 0.8;
-}
-.productList{
-  background-color: blue;
-}
-.ProductHeaderTextStyle{
-  font-size: 35px;
-  margin: 25px 0px 0px 100px;
-  margin-bottom: 5px;
-}
+  

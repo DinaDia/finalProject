@@ -54,18 +54,297 @@
       "DeliveryOption": "Local pickup",
       "Ratings": 3,
       "Deals": 457
+    }
+  ],
+  "products": [
+    {
+      "id": 0,
+      "src": "/avocado.jpg",
+      "value": "Avocado",
+      "textValue": "Avocado"
     },
     {
-      "userName": "",
-      "userCity": "",
-      "userEmail": "",
-      "userPassWord": "",
-      "userSignupType": "Farmer",
-      "products": [
-        []
-      ],
-      "primeProduct": "",
-      "id": 6
+      "id": 1,
+      "src": "/Barley.jpg",
+      "value": "Barley",
+      "textValue": "Barley"
+    },
+    {
+      "id": 2,
+      "src": "/Cabbage.jpg",
+      "value": "Cabbage",
+      "textValue": "Cabbage"
+    },
+    {
+      "id": 3,
+      "src": "/carrot.jpg",
+      "value": "Carrot",
+      "textValue": "Carrot"
+    },
+    {
+      "id": 4,
+      "src": "/Chickpeas.jpg",
+      "value": "Chickpea",
+      "textValue": "Chickpea"
+    },
+    {
+      "id": 5,
+      "src": "/chillie paper.jpg",
+      "value": "chilliPaper",
+      "textValue": "Chilli paper"
+    },
+    {
+      "id": 6,
+      "src": "/cinnamon.jpg",
+      "value": "Cinnamon",
+      "textValue": "Cinnamon"
+    },
+    {
+      "id": 7,
+      "src": "/coffee.jpg",
+      "value": "Coffee",
+      "textValue": "Coffee"
+    },
+    {
+      "id": 8,
+      "src": "/corn.jpg",
+      "value": "Corn",
+      "textValue": "Corn"
+    },
+    {
+      "id": 9,
+      "src": "/Fava beans.jpg",
+      "value": "FavaBean",
+      "textValue": "Fava bean"
+    },
+    {
+      "id": 10,
+      "src": "/Flaxseed.jpg",
+      "value": "Flaxseed",
+      "textValue": "Flaxseed"
+    },
+    {
+      "id": 11,
+      "src": "/garlic.jpg",
+      "value": "Garlic",
+      "textValue": "Garlic"
+    },
+    {
+      "id": 12,
+      "src": "/Ginger.jpg",
+      "value": "Ginger",
+      "textValue": "Ginger"
+    },
+    {
+      "id": 13,
+      "src": "/Groundnuts.jpg",
+      "value": "Groundnut",
+      "textValue": "Groundnut"
+    },
+    {
+      "id": 14,
+      "src": "/haricot bea.jpg",
+      "value": "HaricotBean",
+      "textValue": "Haricot bean"
+    },
+    {
+      "id": 15,
+      "src": "/kidney beans.jpg",
+      "value": "KidneyBean",
+      "textValue": "Kidney bean"
+    },
+    {
+      "id": 16,
+      "src": "/Lentil.jpg",
+      "value": "Lentil",
+      "textValue": "Lentil"
+    },
+    {
+      "id": 17,
+      "src": "/oats.jpg",
+      "value": "Oat",
+      "textValue": "Oat"
+    },
+    {
+      "id": 18,
+      "src": "/Onions.jpg",
+      "value": "Onion",
+      "textValue": "Onion"
+    },
+    {
+      "id": 19,
+      "src": "/potato.jpg",
+      "value": "Potato",
+      "textValue": "Potato"
+    },
+    {
+      "id": 20,
+      "src": "/rice.jpg",
+      "value": "Rice",
+      "textValue": "Rice"
+    },
+    {
+      "id": 21,
+      "src": "/sesame seeds.jpg",
+      "value": "SesameSeed",
+      "textValue": "Sesame seed"
+    },
+    {
+      "id": 22,
+      "src": "/Sorghum.jpg",
+      "value": "Sorghum",
+      "textValue": "Sorghum"
+    },
+    {
+      "id": 23,
+      "src": "/Soybeans.jpg",
+      "value": "Soybean",
+      "textValue": "Soybeans"
+    },
+    {
+      "id": 24,
+      "src": "/SunFlowerSeed.jpg",
+      "value": "SunFlowerSeed",
+      "textValue": "Sunflower seed"
+    },
+    {
+      "id": 25,
+      "src": "/Sweet potatoes.jpg",
+      "value": "SweetPotato",
+      "textValue": "Sweet potato"
+    },
+    {
+      "id": 26,
+      "src": "/Teff.jpg",
+      "value": "Teff",
+      "textValue": "Teff"
+    },
+    {
+      "id": 27,
+      "src": "/Tomatoes.jpg",
+      "value": "Tomato",
+      "textValue": "Tomato"
+    },
+    {
+      "id": 28,
+      "src": "/wheat.jpg",
+      "value": "Wheat",
+      "textValue": "Wheat"
+    },
+    {
+      "id": 29,
+      "src": "/whole peas.jpg",
+      "value": "WholePea",
+      "textValue": "WholePea"
+    }
+  ],
+  "productType":[
+    {
+      "id":0,
+      "productId":7,
+      "name":"Sidamo"      
+    },
+    {
+      "id":1,
+      "productId":7,
+      "name":"Yirgacheffe"      
+    },
+    {
+      "id":2,
+      "productId":7,
+      "name":"Guji"
+    },
+    {
+      "id":3,
+      "productId":27,
+      "name":"White"
+    },
+    {
+      "id":4,
+      "productId":27,
+      "name":"Red"
+    },
+    {
+      "id":5,
+      "productId":27,
+      "name":"Black"
+    }
+  ],
+  "availableProducts":[
+    {
+      "id":0,
+      "name":"Teff",
+      "productType":"Red",
+      "src": "/Teff.jpg",
+      "supplier": "Azalia Elliott",
+      "Ratings":1,
+      "Location":"Scorrano",
+      "Deals":9,
+      "availability": "1000 Kg",
+      "price": "500",
+      "supplierId":2
+    },
+    {
+      "id":1,
+      "name":"Coffee",
+      "productType":"Guji",
+      "src": "/Coffee.jpg",
+      "supplier": "Miriam Beck",
+      "Ratings":3,
+      "Location":"Lozzo Atestino",
+      "Deals":457,
+      "availability": "400 Kg",
+      "price": "600",
+      "supplierId": 5
+    },
+    {
+      "id":2,
+      "name":"Potato",
+      "src": "/potato.jpg",
+      "supplier": "Bianca Lowe",
+      "Ratings":4,
+      "Location":"Vauda Canavese",
+      "Deals":682,
+      "availability": "750 Kg",
+      "price": "20",
+      "supplierId": 1
+
+    },
+    {
+      "id":3,
+      "name":"Tomato",
+      "src": "/Tomatoes.jpg",
+      "supplier": "Simon Donovan",
+      "Ratings":1,
+      "Location":"Vauda Canavese",
+      "Deals":51,
+      "availability": "1200 Kg",
+      "price": "28",
+      "supplierId": 3
+    }
+
+
+
+
+  ],
+  "marketPlaces": [
+    {
+      "id": 0,
+      "name": "Addis Ababa",
+      "price": "90-100",
+      "profit": "10%"
+    },
+    {
+      "id": 1,
+      "name": "Gonder",
+      "price": "50-65",
+      "profit": "7%"
+    },
+    {
+      "id": 2,
+      "name": "Arba minch",
+      "price": "150-170",
+      "profit": "2%"
     }
   ]
 }
