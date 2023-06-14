@@ -120,7 +120,7 @@ router.get("/posts", async (req, res, next) => {
       { latitude: coordinates[1], longitude: coordinates[0] },
       { latitude: farmerCoordinates[1], longitude: farmerCoordinates[0] }
     );
-
+    
     farmersWithDistances.push({
       farmer,
       distance,
@@ -128,11 +128,17 @@ router.get("/posts", async (req, res, next) => {
   }
   // res.json(farmersWithDistances)
   farmersWithDistances.sort((a, b) => a.distance - b.distance);
-  const products = farmersWithDistances
-    .map(({ farmer }) => farmer.productListing)
-    .flat();
-  // console.log(products)
-  res.json(products);
+  const response = farmersWithDistances.map(({ farmer, distance, product }) => ({
+    farmer,
+    distance,
+    product,
+  }));
+  res.json(response)
+  // const products = farmersWithDistances
+  //   .map(({ farmer }) => farmer.productListing)
+  //   .flat();
+  // // console.log(products)
+  // res.json(products);
 });
 
 module.exports = router;
