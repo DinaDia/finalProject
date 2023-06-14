@@ -308,7 +308,6 @@
       "availability": "750 Kg",
       "price": "20",
       "supplierId": 1
-
     },
     {
       "id":3,
@@ -321,6 +320,18 @@
       "availability": "1200 Kg",
       "price": "28",
       "supplierId": 3
+    },
+    {
+      "id":4,
+      "name":"Avocado",
+      "src": "/avocado.jpg",
+      "supplier": "Bianca Lowe",
+      "Ratings":4,
+      "Location":"Vauda Canavese",
+      "Deals":682,
+      "availability": "1530 Kg",
+      "price": "40",
+      "supplierId": 1
     }
 
 
