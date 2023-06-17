@@ -1,4 +1,4 @@
-import styles from '@/styles/supplier.module.css'
+import styles from '@/styles/buyer.module.css'
 import Head from 'next/head';
 import Image from 'next/image';
 import ReactStars from 'react-stars';
@@ -57,11 +57,20 @@ const SupplierDetails = ({farmer}) => {
             <div className={styles.farmDescription}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tincidunt elit sit amet leo rhoncus vulputate.
               Morbi sollicitudin neque et efficitur scelerisque. Nunc semper lectus non interdum vulputate. 
-            </div>              
+            </div>  
+
+         
 
           </div>
-
-          <button className={styles.contactButton}>Contact</button>   
+          <div>
+            <button className={styles.contactButton}>Contact</button>   
+            <div className={styles.rateDiv}>
+                <p className={styles.rateText}>Rate supplier</p>
+                <ReactStars className={styles.Rating} count={5} size={35} value={0}></ReactStars>
+                <button className={styles.submitButton}>Submit</button>
+            </div> 
+          </div>
+  
 
         </div>
 
@@ -70,6 +79,21 @@ const SupplierDetails = ({farmer}) => {
 
       <div className={styles.productList}>
         <h1 className={styles.ProductHeaderTextStyle}>List of available products</h1>
+        <div className={styles.productName}>Coffee</div>
+        <div className={styles.speciation}>
+          <h3 className={styles.speciationText}>Product specification</h3>
+          <div className={styles.productSpecification}>
+            <div>Class</div>
+
+          </div>
+        </div>
+
+        <div className={styles.speciation}>
+          <h3 className={styles.speciationText}>Environment</h3>
+          <Image className={styles.farmStyle} src="/farm.jpg" width={500} height={250}></Image>
+          
+        </div>
+
       </div>
     </div>
   )

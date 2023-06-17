@@ -2,7 +2,6 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import styles from "@/styles/SignUp.module.css"
-import ProductList from "../ProductList";
 import { useState } from "react";
 
 const SignupThree = ({thirdSubmit}) => {
@@ -52,7 +51,7 @@ const SignupThree = ({thirdSubmit}) => {
     const fifthProducts=[
       {id: 0, src: "/SunFlowerSeed.jpg", value: "SunFlowerSeed", textValue: "Sunflower seed"},
       {id: 1, src: "/Sweet potatoes.jpg", value: "SweetPotato", textValue: "Sweet potato"},
-      {id: 2, src: "/tea.jpg", value: "Tea", textValue: "Tea"},
+      {id: 2, src: "/Teff.jpg", value: "Teff", textValue: "Teff"},
       {id: 3, src: "/Tomatoes.jpg", value: "Tomato", textValue: "Tomato"},
       {id: 4, src: "/wheat.jpg", value: "Wheat", textValue: "Wheat"},
       {id: 5, src: "/whole peas.jpg", value: "WholePea", textValue: "WholePea"}
@@ -91,7 +90,7 @@ const SignupThree = ({thirdSubmit}) => {
                     </div>
                 )
               })}
-                </div>
+              </div>
 
 
               <div className={styles.productRowStyle}>

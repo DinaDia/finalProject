@@ -14,12 +14,10 @@
     justify-content: center;
   }
   .navbarItemsStyle{
-    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     height: 100%;
-    margin-left: 80px;
   }
 
   .navLinkStyle{
@@ -81,6 +79,6 @@
 }
 .profilePictureStyle{
   cursor: pointer;
-  margin-right: 5px;
-  padding-left: 160px;
+  margin-right: 15px;
+  padding-left: 150px;
 }

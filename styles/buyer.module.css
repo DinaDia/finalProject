@@ -1,84 +1,435 @@
 
+.farmerInfo{
+  display: grid;
+  background-color:#eaeaecdc;
+  padding: 25px 15px ;
+  border:none;
+  border-radius: 10px;
+
+}
+.single {
+  padding: 15px 10px;
+  background: white;    
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  color:black;
+  border-radius: 10px;
+  box-sizing: border-box;
+  position: relative;
+  margin: auto;
+  margin: 7px 20px;
+
+}
+.single:hover {
+  padding: 30px;
+  margin: 5px;
+}
+.farmerInfoBox{
+  margin: auto;
+  margin-top: 20px;
+  max-width: 1300px;
+  padding: 40px 40px 5px 40px; 
+  border-bottom: 3px #eaeaecdc solid;
+}
+.headerTextStyle{
+  text-align: center;
+  font-size: 40px;
+  margin-top: 50px;
+  margin-bottom: 5px;
+}
+.SupplierHeaderTextStyle{
+  text-align: center;
+  font-size: 35px;
+  margin-top: 50px;
+}
+.mainArea{
+  margin: 10px 30px;
+  padding: 5px;
+}
+.profilePictureStyle{
+  object-fit: cover;
+  margin: 0 10px;
+}
+.nameStyle{
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.productNameStyle{
+  font-size: 28px;
+  font-weight: bold;
+  background: -webkit-linear-gradient(45deg, #40c057, #15aabf);
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent;
+}
+.priceStyle{
+  padding: 0 15px;
+  margin-top: 100px;
+  color:#777;
+  font-weight: bold;
+  font-size: 22px;
+  border-radius: 4px;
+  position: absolute;
+  right:10px;
+}
+
+.button{
+  padding-left: 18px;
+  padding-right: 18px;
+  width:170px;
+  height: 45px;
+  background-image: linear-gradient(to right, #40c057, #15aabf);
+  color:white;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 4px;
+  border:none;
+  cursor: pointer;
+  margin-right: 15px;
+  position: absolute;
+  right:10px
+}
+.button:hover{
+  background-image: linear-gradient(to left,  #40c057, #15aabf);
+}
+.button:active{
+  opacity: 0.8;
+} 
+.mainAreaStyle{
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  padding:25px 0;
+  margin: auto;
+
+} 
+.detailInfo{
+  display: flex;
+  margin-left: 50px;
+}
+
+.productInfo{
+  display: flex;
+  margin-left: 20px;
+}
+.nameStyle{
+  font-size: 20px;
+  font-weight:bold;
+  margin-bottom: 3px;
+}
+.locationStyle{
+  font-size: 18px;
+  color: #777;
+  margin-bottom: 3px 0;
+}
+.userInfoStyle{
+  padding:5px 30px 0 5px;
+  margin-top: 5px;
+}
+
+.productInfoStyle{
+  padding:25px 30px 10px 15px;
+}
+.farmDescription{
+  max-width: 700px;
+  margin-left: 40px;
+  font-size: 20px;
+}
+.verticalLine{
+  font-size: 28px;
+  color: #d1d1d1 ;
+  margin: -5px 10px 0 10px;
+}
+
+.verticalLineStyle{
+  font-size: 40px;
+  color: #d1d1d1 ;
+  margin: -10px 10px 0 10px;
+}
+
+.ratingAndDeal{
+  display: flex;
+  margin-left: 75px;
+  margin-top: 5px;
+  width:auto;
+}
+
+.ratingAndDealStyle{
+  display: flex;
+  margin-left: 75px;
+  margin-top: 3px;
+  width:auto;
+  padding: 10px 5px;
+}
+
+
+.productRatingAndDeal{
+  display: flex;
+  margin-left: 3px;
+  margin-top: 13px;
+  width:auto;
+}
+
+.dealsAndProduct{
+  text-align: center;
+  height:auto;
+  font-size: 16px;
+  margin-top: 4px;
+}
+.dealsAndProductStyle{
+  text-align: center;
+  height:auto;
+  font-size: 18px;
+  margin-top: 8px;
+}
+
+.Ratings{
+  text-align: center;
+  height:auto;
+  font-size: 18px;
+  margin-top: -2px;
+}
+.contactButton{
+  width:170px;
+  height: 45px;
+  padding-left: 18px;
+  padding-right: 18px;
+  background-image: linear-gradient(to right, #40c057, #15aabf);
+  color:white;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 4px;
+  border:none;
+  cursor: pointer;
+  margin-left: 35px;
+  margin-bottom: 20px;
+
+}
+.contactButton:hover{
+  background-image: linear-gradient(to left,  #40c057, #15aabf);
+}
+.contactButton:active{
+  opacity: 0.8;
+}
+.rateDiv{
+  width: 200px;
+  justify-content: right;
+  margin-right: 120px;
+  padding: 20px;
+  margin-top: 5px;
+  border: 3px solid #dee2e6;
+  border-radius: 8px;
+}
+.Rating{
+  margin-left: 28px;
+  margin-bottom: 5px;
+
+}
+.rateText{
+  margin: -5px;
+  margin-bottom: 0;
+  font-size: 20px;
+  text-align: center;
+}
+.submitButton{
+  width:170px;
+  height: 55px;
+  padding-left:20px;
+  padding-right:20px;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 4px;
+  border:3px black solid;
+  cursor: pointer;
+  justify-content: center;
+  background-color: white;
+  margin-left: 15px;
+}
+.submitButton:hover{
+  background-color: #9c9c9c;
+  color:white;
+}
+.submitButton:active{
+  background-color: rgb(226, 226, 226);
+  color:white;
+}
+.productList{
+  margin: auto;
+  margin-top: 50px;
+  max-width: 1400px;
+  padding:5px;
+}
+.ProductHeaderTextStyle{
+  font-size: 35px;
+  margin: 25px 0px 0px 100px;
+}
+.productName{
+  max-width: 1300px;
+  margin: auto;
+  margin-top: 20px;
+  font-size: 25px;
+  color:#9c9c9c;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.speciation{
+  margin-top: 70px;
+  border-top: 3px #eaeaecdc solid;
+  max-width: 1200px;
+  margin: auto;
+}
+.speciationText{
+  font-size: 20px;
+  margin-left: 35px;
+  margin-top: 5px;
+}
+.productSpecification{
+  background-color: #15aabf;
+}
+.farmStyle{
+  border-radius: 5px;
+  margin-left: 75px;
+}
+
 .sideBarStyle {
-    position: absolute;
-    top: 70px;
-    width: 420px;
-    height: 100%;
-    z-index: 200;
-    padding-top: 5px;
-    margin-left:  -8px;
-    overflow: auto;
-    box-sizing: border-box;
-    
-  }
-  .sampleContent{
-    height: 2000px;
-    margin-left: 400px;
-    border-left: 2px #eaeaecdc solid ;
-  }
-  .formStyle{
-    display: block;
-    margin-left: 20px;
-    margin-top: 150px;
-    background-color: white;
-    border-radius: 5px;
-    padding: 20px;
-    border: 1px solid #f3f5f7;
-    max-width: 320px;
+  position: absolute;
+  top: 70px;
+  width: 420px;
+  z-index: 200;
+  padding-top: 5px;
+  margin-left:  -8px;
+  overflow: auto;
+  box-sizing: border-box;
+}
+.sampleContent{
+  margin-left: 400px;
+  border-left: 3px #d1d1d1dc solid ;
+  padding: 20px;
+}
+.formStyle{
+  display: block;
+  margin-left: 20px;
+  margin-top: 160px;
+  border-radius: 5px;
+  padding: 20px;
+  border: 1px solid #c9c9c9;
+  max-width: 320px;
 }
 .labelStyle{
-    display: inline-block;
-    margin-bottom: 8px;
-    text-align: left;
-    font-size: 17px;
-    font-weight: bold;
-    line-height: 1.5;
-    box-sizing: border-box;
+  display: inline-block;
+  margin-bottom: 8px;
+  text-align: left;
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 1.5;
+  box-sizing: border-box;
 }
 .inputStyle{
-    margin-top: 4px;
-    margin-bottom: 12px;
-    display: block;
-    width: 100%;
-    padding: 12px;
-    font-size: 14px;
-    box-sizing: border-box;
-    border-radius: 6px;
-    border: 2px solid #dee2e6;
-    cursor: default;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 2px solid #dee2e6;
+  cursor: default;
+}
+
+.inputStyle:hover {
+  border: 3px solid black;
 }
 
 .optionStyle{
-    margin-top: 4px;
-    margin-bottom: 12px;
-    display: block;
-    width: 100%;
-    padding: 14px ;
-    font-size: 15px;
-    color:grey;
-    box-sizing: border-box;
-    border-radius: 6px;
-    border: 2px solid #dee2e6;
-    cursor: default;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  display: block;
+  width: 100%;
+  padding: 14px ;
+  font-size: 15px;
+  color:grey;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 2px solid #dee2e6;
+  cursor: default;
+}
+.optionStyle:hover {
+  border: 3px solid black;
+  border-radius: 10px;
 }
 
 .loginButton{
-    height:auto;
-    margin-top: 15px;
-    padding: 12px 18px 12px 18px;
-    width:100%;
-    background-image: linear-gradient(to right, #40c057, #15aabf);
-    color:white;
-    font-weight: bold;
-    font-size: 18px;
-    border-radius: 4px;
-    border:none;
-    cursor: pointer;
-  }
-  .loginButton:hover{
-    background-image: linear-gradient(to left,  #40c057, #15aabf);
-  }
-  .loginButton:active{
-    opacity: 0.8;
-  }
-  
+  height:auto;
+  margin-top: 15px;
+  padding: 12px 18px 12px 18px;
+  width:100%;
+  background-image: linear-gradient(to right, #40c057, #15aabf);
+  color:white;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 4px;
+  border:none;
+  cursor: pointer;
+}
+.loginButton:hover{
+  background-image: linear-gradient(to left,  #40c057, #15aabf);
+}
+.loginButton:active{
+  opacity: 0.8;
+}
+.filerStyles{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+
+.multipleOptionStyle {
+  margin: 10px;
+  display: block;
+  width: 100%;
+  padding: 16px;
+  font-size: 15px;
+  color:grey;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 2px solid #dee2e6;
+  cursor: pointer;
+}
+.multipleOptionStyle:hover {
+  border: 3px solid black;
+}
+
+/* .listOfProductStyle{
+  padding: 5px 10px;
+  margin-top: 0;
+  display: grid;
+  background-color:#eaeaecdc;
+  border:none;
+  border-radius: 10px;
+} */
+/* 
+.individualProduct{
+  margin: 10px;
+  padding: 15px 10px;
+  background: white;    
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  color:black;
+  border-radius: 10px;
+  box-sizing: border-box;
+  position: relative;
+  margin: auto;
+} */
+
+.pictureStyle{
+  border-radius: 20px;
+  margin: 5px;
+  cursor: pointer;
+}

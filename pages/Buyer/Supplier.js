@@ -1,4 +1,4 @@
-import styles from '@/styles/supplier.module.css'
+import styles from '@/styles/buyer.module.css'
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
