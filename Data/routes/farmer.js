@@ -5,126 +5,172 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const axios = require("axios");
+const asyncHandler=require('express-async-handler')
+const jwt=require('jsonwebtoken')
+const bcrypt=require('bcryptjs')
 
-const catchAsync = require("../utils/catchAsync");
-const ExpressError = require("../utils/ExpressError");
 
 const Farmer = require("../models/farmer");
 const MarketData = require("../models/market");
 const Customer = require("../models/customer");
 
-const { geocode, isLoggedIn } = require("../middleware");
+const { geocode, isFarmerLoggedIn } = require("../middleware");
 
-// router.post("/signup", catchAsync(async (req, res, next) => {
-//   if(!req.body)throw new ExpressError("Invalid data",400)
-//   const { firstName, lastName, email, location, username, password } = req.body;
-
-//   const geocodeResult = await geocode(location);
-//     const { lat, lng } = geocodeResult;
-//     const markets = await MarketData.find({});
-//     const distances = {};
-//     markets.forEach((market) => {
-//       market.locations.forEach((location) => {
-//         const distance = geolib.getDistance(
-//           { latitude: lat, longitude: lng },
-//           { latitude: location.location.coordinates[0], longitude: location.location.coordinates[1] }
-//         );
-//         distances[`${market.name}-${location.name}`] = distance;
-//       });
-//     });
-//     const farmer = new Farmer({
-//       firstName,
-//       lastName,
-//       email,
-//       username,
-//       location: {
-//         name:location,
-//         type: "Point",
-//         coordinates: [lng, lat],
-//       },
-//       marketDistances: distances,
-//     });
-//     const registeredFarmer = await Farmer.register(farmer, password);
-//         // const {_id,marketDistances}=registeredFarmer
-//           res.status(201).json({
-//             registeredFarmer
-//           })
-
-//         req.login(registeredFarmer, (err) => {
-//           if (err) return next(err);
-//           // res.redirect("/marketdata");
-//           // res.status(200).json({ success: true, message: "Farmer registered successfully" });
-//         });
-
-// }));
-router.post("/signup", async (req, res, next) => {
-  const { firstName, lastName, email, location, username, password } = req.body;
-  const geocodeResult = await geocode(location);
-  const { lat, lng } = geocodeResult;
-  const markets = await MarketData.find({});
-  const distances = {};
-  async function calculateRoutingDistance(origin, destination) {
-    const url = `http://router.project-osrm.org/route/v1/driving/${origin.longitude},${origin.latitude};${destination.longitude},${destination.latitude}`;
-    const response = await axios.get(url);
-    const route = response.data.routes[0];
-    return route.distance; // Distance in meters
+const generateToken=(id)=>{
+  return jwt.sign({id},process.env.jwtSecret,{expiresIn:'1d'})
+}
+router.post('/signup',asyncHandler(async(req,res)=>{
+  const { name, email, location, password } = req.body;
+  if (!name || !email || !password || !location) {
+    res.status(400);
+    throw new Error("Please fill in all required fields");
   }
-  for (const market of markets) {
-    for (const location of market.locations) {
-      const destination = {
-        latitude: location.location.coordinates[0],
-        longitude: location.location.coordinates[1],
-      };
-      const distance = await calculateRoutingDistance(
-        { latitude: lat, longitude: lng },
-        destination
-      );
-      distances[`${market.name}-${location.name}`] = distance;
+  
+  const existingFarmer= await Farmer.findOne({email})
+  if(existingFarmer){
+    res.status(400)
+    throw new Error("email has already been used")
+  }else{
+    const geocodeResult = await geocode(location);
+    const { lat, lng } = geocodeResult;
+    const markets = await MarketData.find({});
+    const distances = {};
+    async function calculateRoutingDistance(origin, destination) {
+      const url = `http://router.project-osrm.org/route/v1/driving/${origin.longitude},${origin.latitude};${destination.longitude},${destination.latitude}`;
+      const response = await axios.get(url);
+      const route = response.data.routes[0];
+      return route.distance; // Distance in meters
     }
+    for (const market of markets) {
+      for (const location of market.locations) {
+        const destination = {
+          latitude: location.location.coordinates[0],
+          longitude: location.location.coordinates[1],
+        };
+        const distance = await calculateRoutingDistance(
+          { latitude: lat, longitude: lng },
+          destination
+        );
+        distances[`${market.name}-${location.name}`] = distance;
+      }
+    }
+  
+    const farmer = new Farmer({
+      name,
+      password,
+      email,
+      location: {
+        name: location,
+        type: "Point",
+        coordinates: [lng, lat],
+      },
+      marketDistances: distances,
+    });
+    
+    await farmer.save()
+    const token=generateToken(farmer._id)
+    // console.log(token)
+    res.cookie("token",token,{
+      path:'/',
+      httpOnly:true,
+      expires:new Date(Date.now()+1000*86400),
+      sameSite:"lax",
+      secure:false
+  
+    })
+    const{_id,name,location,email,marketDistances}=farmer
+    res.status(201).json({
+      _id,
+      name,
+      location,
+      email,
+      marketDistances,
+      token
+    });
   }
-  const farmer = new Farmer({
-    firstName,
-    lastName,
-    email,
-    username,
-    location: {
-      name: location,
-      type: "Point",
-      coordinates: [lng, lat],
-    },
-    marketDistances: distances,
-  });
+}))
+// router.get('/cookies', (req, res) => {
+//   // Retrieve the token cookie
+//   const token = req.cookies.token;
 
-  const registeredFarmer = await Farmer.register(farmer, password);
-  // const {_id,marketDistances}=registeredFarmer
-  res.status(201).json({
-    registeredFarmer,
-  });
+//   // Use the token as needed
+//   // console.log('Token:', token);
+//   res.json(token)
 
-  req.login(registeredFarmer, (err) => {
-    if (err) return next(err);
-    // res.redirect("/marketdata");
-    // res.status(200).json({ success: true, message: "Farmer registered successfully" });
-  });
-});
-
-router.post(
-  "/login",
-  passport.authenticate("farmer", {
-    failureRedirect: "/farmer/login",
-    keepSessionInfo: true,
-  }),
-  async (req, res, next) => {
-    const farmer = await Farmer.findById(req.user._id);
-    res.status(200).json({ farmer });
+//   // Other logic for the cookies page
+//   // ...
+// });
+router.post('/login',asyncHandler(async(req,res)=>{
+  const {email,password}=req.body
+  if(!email||!password){
+    res.status(400)
+    throw new Error("please add email and password")
   }
-);
+  const farmer=await Farmer.findOne({email})
+  if(!farmer){
+    res.status(400)
+    throw new Error("User not found please sign up")
+  }
+  const correctPassword=await bcrypt.compare(password,farmer.password)
+  const token=generateToken(farmer._id) 
+  if(farmer && correctPassword){
+    res.cookie("token",token,{
+      path:'/',
+      httpOnly:true,
+      expires:new Date(Date.now()+1000*86400),
+      sameSite:"lax",
+      secure:false
+  
+    })
+    const{_id,name,email,location,marketDistances}=farmer
+    res.status(200).json({
+      _id,
+      name,
+      email,
+      location,
+      marketDistances,
+      token
+    })
+  }else{
+    res.status(400)
+    throw new Error("invalid email or password")
+  }
+}))
+router.get('/logout',asyncHandler(async(req,res,next)=>{
+  res.cookie("token","",{
+    path:'/',
+    httpOnly:true,
+    expires:new Date(0),
+    sameSite:"lax",
+    secure:false
+  }) 
+  return res.status(200).json({
+    message:"successfully logged out"
+  })
+}))
 
-router.get("/getFarmer", isLoggedIn, async (req, res, next) => {
+router.get("/getFarmer",isFarmerLoggedIn,asyncHandler(async (req, res) => {
   const farmer = await Farmer.findById(req.user._id);
-  res.status(200).json({ farmer });
-});
-router.post("/postProduct", isLoggedIn, async (req, res, next) => {
+  // console.log(farmer)
+  if(farmer){
+    const{_id,name,email,location,marketDistances}=farmer
+    res.status(200).json({
+      _id,
+      name,
+      email,
+      location,
+      marketDistances,
+    })
+  }else{
+    res.status(400)
+    throw new Error("Farmer Not Found")
+  }
+  
+ 
+}));
+
+
+router.post("/postProduct", isFarmerLoggedIn, async (req, res, next) => {
   const { type, quantity, price } = req.body;
   const farmer = await Farmer.findById(req.user._id);
   farmer.productListing.push({ type, quantity, price });
@@ -140,54 +186,16 @@ router.get("/logout", (req, res, next) => {
   // res.redirect('/')
 });
 
-router.get("/marketdata",isLoggedIn, async (req, res) => {
-  // Retrieve all market data documents from the database
+router.get("/marketdata",isFarmerLoggedIn, async (req, res) => {
+  const farmer = req.user;
   const marketData = await MarketData.find();
-
-  const productName = req.query.productName;
-  const quantity = req.query.quantity;
-  if (productName && quantity) {
-    // Find the selected product in the market data based on the name attribute
-    const selectedProduct = marketData.find(product => product.name === productName);
-
-    if (!selectedProduct) {
-      // Handle case when the product is not found
-      return res.status(400).json({ error: "Product not found" });
-    }
-    const potentialProfits = selectedProduct.locations.map(location => {
-      const marketName = location.name;
-      const marketDistance = req.user.marketDistances.get(`${selectedProduct.name}-${marketName}`)/1000;
-      // console.log(marketDistance)
-      const transportationCost =  marketDistance;
-      const qtyTransport=marketDistance * quantity/100
-      // console.log(qtyTransport)
-      const marketPrice = location.price;
-      const potentialProfit = (marketPrice  * quantity)- (transportationCost+qtyTransport);
-      // console.log(potentialProfit)
-      return {
-        product: selectedProduct.name,
-        marketplace: marketName,
-        price:location.price,
-        profit: potentialProfit,
-      };
-
+  marketData.forEach(market => {
+    market.locations.sort((a, b) => {
+      const distanceA = farmer.marketDistances.get(`${market.name}-${a.name}`);
+      const distanceB = farmer.marketDistances.get(`${market.name}-${b.name}`);
+      return distanceA - distanceB;
     });
-    potentialProfits.sort((a, b) => b.profit - a.profit);
-
-    // Send the potential profits as a JSON response
-    res.status(200).json({ data: potentialProfits });
-  }else {
-    // Sort the locations within each market data document based on the distance from the farmer's location
-    marketData.forEach(market => {
-      market.locations.sort((a, b) => {
-        const distanceA = req.user.marketDistances.get(`${market.name}-${a.name}`);
-        const distanceB = req.user.marketDistances.get(`${market.name}-${b.name}`);
-        return distanceA - distanceB;
-      });
-    });
-
-    // Send the sorted market data as a JSON response
-    res.status(200).json({ data: marketData });
-  }    
+  });
+  res.status(200).json({ data:marketData});
 });
 module.exports = router;

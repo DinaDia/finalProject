@@ -10,6 +10,8 @@ const flash=require('connect-flash')
 const Geocoder = require('nominatim-geocoder');
 const geolib=require('geolib')
 const axios = require('axios');
+const cors=require('cors')
+const cookieParser=require('cookie-parser')
 
 const catchAsync=require('./utils/catchAsync')
 const ExpressError=require('./utils/ExpressError')
@@ -36,47 +38,48 @@ const sessionConfig={
   
 }
 app.use(express.json());
+app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
-app.use(session(sessionConfig))
-app.use(flash())
-app.use(passport.initialize())
-app.use(passport.session())
-passport.use('farmer', new LocalStrategy(Farmer.authenticate()));
-passport.use('customer', new LocalStrategy(Customer.authenticate()));
+// app.use(session(sessionConfig))
+// app.use(flash())
+// app.use(passport.initialize())
+// app.use(passport.session())
+// passport.use('farmer', new LocalStrategy(Farmer.authenticate()));
+// passport.use('customer', new LocalStrategy(Customer.authenticate()));
 
 
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
+// passport.serializeUser(function(user, done) {
+//   done(null, user.id);
+// });
 
-passport.deserializeUser(function(id, done) {
-  let foundUser = null;
-  Farmer.findById(id)
-    .then(farmer => {
-      if (farmer) {
-        foundUser = farmer;
-        return Promise.resolve(farmer);
-      } else {
-        return Customer.findById(id);
-      }
-    })
-    .then(customer => {
-      if (customer) {
-        foundUser = customer;
-        return Promise.resolve(customer);
-      } else {
-        return Promise.reject(new Error('User not found'));
-      }
-    })
-    .then(user => {
-      done(null, foundUser);
-    })
-    .catch(err => {
-      done(err, null);
-    });
-});
+// passport.deserializeUser(function(id, done) {
+//   let foundUser = null;
+//   Farmer.findById(id)
+//     .then(farmer => {
+//       if (farmer) {
+//         foundUser = farmer;
+//         return Promise.resolve(farmer);
+//       } else {
+//         return Customer.findById(id);
+//       }
+//     })
+//     .then(customer => {
+//       if (customer) {
+//         foundUser = customer;
+//         return Promise.resolve(customer);
+//       } else {
+//         return Promise.reject(new Error('User not found'));
+//       }
+//     })
+//     .then(user => {
+//       done(null, foundUser);
+//     })
+//     .catch(err => {
+//       done(err, null);
+//     });
+// });
 
 
 

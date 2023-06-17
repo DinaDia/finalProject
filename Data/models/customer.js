@@ -1,13 +1,9 @@
 const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
 const Schema = mongoose.Schema;
+const bcrypt=require('bcryptjs')
 
 const CustomerSchema = new Schema({
-  firstName: {
-    type: String,
-    required: true,
-  },
-  lastName: {
+  name: {
     type: String,
     required: true,
   },
@@ -36,9 +32,24 @@ const CustomerSchema = new Schema({
     of: Number,
     default: {},
   },
+  password:{
+    type:String,
+    required:true
+  }
   // Add any other fields specific to the customer model
+},{
+  timestamps:true
 });
-CustomerSchema.plugin(passportLocalMongoose)
+
+CustomerSchema.pre("save",async function(next){
+  if(!this.isModified("password")){
+    return next()
+  }
+  const salt=await bcrypt.genSalt(10)
+  const hashed=await bcrypt.hash(this.password,salt)
+  this.password=hashed
+  next()
+})
 CustomerSchema.index({ location: '2dsphere' });
 const Customer = mongoose.model('Customer', CustomerSchema);
 
