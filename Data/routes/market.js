@@ -7,6 +7,7 @@ const ExpressError=require('../utils/ExpressError')
 
 
 const MarketData=require('../models/market')
+const MarketStore=require('../models/marketStore')
 const Farmer=require('../models/farmer')
 const Customer=require('../models/customer')
 
@@ -17,9 +18,10 @@ async function calculateRoutingDistance(origin, destination) {
   const route = response.data.routes[0];
   return route.distance; // Distance in meters
 }
-router.post("/addmarket",(async (req, res, next) => {
+router.post("/addmarket",isAdmin,(async (req, res, next) => {
     const { name, location, price } = req.body;
-  
+    const store=new MarketStore({name,location,price})
+    await store.save()
     let marketData = await MarketData.findOne({ name });
   
     if (marketData) {
@@ -94,6 +96,20 @@ router.post("/addmarket",(async (req, res, next) => {
             );
             farmer.marketDistances.set(`${name}-${location}`, distance);
             await farmer.save();
+          }
+          const customers = await Customer.find({});
+          for (const customer of customers) {
+            const customerLocation = customer.location.coordinates;
+            const destination = {
+              latitude: lat,
+              longitude: lng,
+            };
+            const distance = await calculateRoutingDistance(
+              { latitude: customerLocation[1], longitude: customerLocation[0] },
+              destination
+            );
+            customer.marketDistances.set(`${name}-${location}`, distance);
+            await customer.save();
           }
     }
       await marketData.save();

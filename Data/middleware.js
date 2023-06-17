@@ -4,6 +4,7 @@ const asyncHandler = require("express-async-handler");
 const Customer = require("./models/customer");
 const Farmer = require("./models/farmer");
 const Admin = require("./models/admin");
+const Supplier = require("./models/agriSupplier");
 const geocoder = new Geocoder();
 
 module.exports.geocode = async (address) => {
@@ -53,6 +54,26 @@ module.exports.isCustomerLoggedIn = asyncHandler(async (req, res, next) => {
       throw new Error("user not found");
     }
     req.user = customer;
+    next();
+  } catch (e) {
+    res.status(401);
+    throw new Error("Not Authorized,please login");
+  }
+});
+module.exports.isSupplierLoggedIn = asyncHandler(async (req, res, next) => {
+  try {
+    const token = req.cookies.token;
+    if (!token) {
+      res.status(401);
+      throw new Error("Not Authorized,please login");
+    }
+    const verified = jwt.verify(token, process.env.jwtSecret);
+    const supplier = await Supplier.findById(verified.id).select("-password");
+    if (!supplier) {
+      res.status(401);
+      throw new Error("user not found");
+    }
+    req.user = supplier;
     next();
   } catch (e) {
     res.status(401);
