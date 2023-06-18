@@ -26,8 +26,8 @@ const generateToken=(id)=>{
 
   
 router.post('/signup',asyncHandler(async(req,res)=>{
-    const { name, email, password } = req.body;
-    if (!name || !email || !password) {
+    const { name, email, password,location} = req.body;
+    if (!name || !email || !password || !location) {
       res.status(400);
       throw new Error("Please fill in all required fields");
     }
@@ -36,13 +36,21 @@ router.post('/signup',asyncHandler(async(req,res)=>{
       res.status(400)
       throw new Error("email has already been used")
     }else{
+      const geocodeResult = await geocode(location);
+      const { lat, lng } = geocodeResult;
         const agriSupplier=new AgriSupplier({
             name,
             email,
+            location: {
+              name: location,
+              type: "Point",
+              coordinates: [lng, lat],
+            },
             password
         })
         await agriSupplier.save()
         const token=generateToken(agriSupplier._id)
+        
         res.cookie("token",token,{
             path:'/',
             httpOnly:true,
@@ -51,8 +59,12 @@ router.post('/signup',asyncHandler(async(req,res)=>{
             secure:false
         
           })
+          const{_id,name,email}=agriSupplier
           res.status(201).json({
-            agriSupplier,
+            _id,
+            name,
+            email,
+            location,
             token
           });
     }

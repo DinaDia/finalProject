@@ -13,6 +13,7 @@ const crypto=require('crypto')
 const Farmer = require("../models/farmer");
 const MarketData = require("../models/market");
 const Customer = require("../models/customer");
+const AgriSupplier = require("../models/agriSupplier");
 const Token = require("../models/farmerTokenModel"); 
 
 const { geocode, isFarmerLoggedIn } = require("../middleware");
@@ -313,4 +314,9 @@ router.get("/marketdata",isFarmerLoggedIn, async (req, res) => {
   });
   res.status(200).json({ data:marketData});
 });
+router.get('/postedMaterials',isFarmerLoggedIn,asyncHandler(async(req,res,next)=>{
+  const suppliers = await AgriSupplier.find();
+    const materials = suppliers.flatMap((supplier) => supplier.materialListing);
+    res.status(200).json({ data: materials })
+}))
 module.exports = router;
