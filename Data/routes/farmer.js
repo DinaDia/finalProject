@@ -24,8 +24,8 @@ const generateToken=(id)=>{
   return jwt.sign({id},process.env.jwtSecret,{expiresIn:'1d'})
 }
 router.post('/signup',asyncHandler(async(req,res)=>{
-  const { name, email, location, password } = req.body;
-  if (!name || !email || !password || !location) {
+  const { name, email, location, password ,products} = req.body;
+  if (!name || !email || !password || !location || !products) {
     res.status(400);
     throw new Error("Please fill in all required fields");
   }
@@ -39,12 +39,17 @@ router.post('/signup',asyncHandler(async(req,res)=>{
     const { lat, lng } = geocodeResult;
     const markets = await MarketData.find({});
     const distances = {};
+    
     async function calculateRoutingDistance(origin, destination) {
-      const url = `http://router.project-osrm.org/route/v1/driving/${origin.longitude},${origin.latitude};${destination.longitude},${destination.latitude}`;
-      const response = await axios.get(url);
-      const route = response.data.routes[0];
+      const url = `http://router.project-osrm.org/route/v1/driving/${origin.longitude},${origin.latitude};${destination.longitude},${destination.latitude}`;// Asynchronously calculate the driving distance between two locations
+      
+      const response = await axios.get(url); // Make a GET request to the routing service API
+
+      const route = response.data.routes[0];// Extract the route distance from the response
+
       return route.distance; // Distance in meters
     }
+    // Iterate over all markets and their locations
     for (const market of markets) {
       for (const loc of market.locations) {
         const destination = {
@@ -58,7 +63,7 @@ router.post('/signup',asyncHandler(async(req,res)=>{
         distances[`${market.name}-${loc.name}`] = distance;
       }
     }
-  
+  // Create a new farmer with the provided information
     const farmer = new Farmer({
       name,
       password,
@@ -69,11 +74,12 @@ router.post('/signup',asyncHandler(async(req,res)=>{
         coordinates: [lng, lat],
       },
       marketDistances: distances,
+      products
     });
     
     await farmer.save()
+    // Generate a token for the farmer
     const token=generateToken(farmer._id)
-    // console.log(token)
     res.cookie("token",token,{
       path:'/',
       httpOnly:true,
@@ -82,6 +88,7 @@ router.post('/signup',asyncHandler(async(req,res)=>{
       secure:false
   
     })
+    // Send the created farmer's information in the response
     const{_id,name,email,marketDistances}=farmer
     res.status(201).json({
       _id,
@@ -274,7 +281,9 @@ router.post("/postProduct", isFarmerLoggedIn, async (req, res, next) => {
 
 router.get("/marketdata",isFarmerLoggedIn, async (req, res) => {
   const farmer = req.user;
+  // Retrieve all market data
   const marketData = await MarketData.find();
+   // Retrieve query parameters for product name and quantity
   const productName = req.query.productName;
   const quantity = req.query.quantity;
   if (productName && quantity) {
@@ -285,20 +294,57 @@ router.get("/marketdata",isFarmerLoggedIn, async (req, res) => {
       // Handle case when the product is not found
       return res.status(400).json({ error: "Product not found" });
     }
+    // Calculate potential profits for each location of the selected product
     const potentialProfits = selectedProduct.locations.map(location => {
       const marketName = location.name;
+       // Get the market distance from the farmer's marketDistances object
       const marketDistance = req.user.marketDistances.get(`${selectedProduct.name}-${marketName}`)/1000;
-      const transportationCost =  marketDistance;
-      const qtyTransport=marketDistance * quantity/100
-      const marketPrice = location.price;
-      const potentialProfit = (marketPrice  * quantity)- (transportationCost+qtyTransport);
-      return {
-        product: selectedProduct.name,
-        marketplace: marketName,
-        price:location.price,
-        profit: potentialProfit,
-      };
-
+      if(quantity<25){
+        const transportationCost =  marketDistance;
+        const qtyTransport=0
+        const marketPrice = location.price;
+        const potentialProfit = (marketPrice  * quantity)- (transportationCost+qtyTransport);
+        return {
+          product: selectedProduct.name,
+          marketplace: marketName,
+          price:location.price,
+          profit: potentialProfit,
+        };
+      }else if(quantity<500){
+        const transportationCost=marketDistance;
+        const qtyTransport=0.5*transportationCost
+        const marketPrice = location.price;
+        const potentialProfit = (marketPrice  * quantity)- (transportationCost+qtyTransport);
+        return {
+          product: selectedProduct.name,
+          marketplace: marketName,
+          price:location.price,
+          profit: potentialProfit,
+        };
+      }else if(quantity<6000){
+        const transportationCost=marketDistance;
+        const qtyTransport=0.9*transportationCost
+        const marketPrice = location.price;
+        const potentialProfit = (marketPrice  * quantity)- (transportationCost+qtyTransport);
+        return {
+          product: selectedProduct.name,
+          marketplace: marketName,
+          price:location.price,
+          profit: potentialProfit,
+        };
+      }
+      else{
+        const transportationCost=marketDistance;
+        const qtyTransport=0.61*transportationCost
+        const marketPrice = location.price;
+        const potentialProfit = (marketPrice  * quantity)- (transportationCost+qtyTransport);
+        return {
+          product: selectedProduct.name,
+          marketplace: marketName,
+          price:location.price,
+          profit: potentialProfit,
+        };
+      }
     });
     potentialProfits.sort((a, b) => b.profit - a.profit);
 
