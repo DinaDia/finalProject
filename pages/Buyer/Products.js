@@ -115,7 +115,7 @@ const Products = ({products, availableProducts, productTypes}) => {
                         <Link href={'/Buyer/'+ availableProduct.supplierId} key={availableProduct.id} className={styles.single}>
                             <div>
                                 <div className={styles.productInfo}>
-                                <Image className={styles.pictureStyle} src={availableProduct.src} width={120} height={120}></Image>
+                                <Image className={styles.pictureStyle} src={availableProduct.src} alt="product picture"  width={120} height={120}></Image>
                                 <div className={styles.productInfoStyle}>
                                     <div className={styles.productNameStyle}>{availableProduct.name}</div>
                                     <div className={styles.locationStyle}>Crop origin:  {availableProduct.Location}</div>

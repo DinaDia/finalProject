@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export const getStaticProps=async()=>{
 
-  const res=await fetch('http://localhost:8000/marketPlaces');
+  const res=await fetch('http://localhost:8000/recommendedMarket');
   const data= await res.json();
 
   return {
@@ -25,7 +25,7 @@ const index = ({marketPlaces}) => {
         <div className={styles.mainArea}>
                 <div className={styles.marketPlaceInfo}>
                     {marketPlaces.map((marketPlace)=>(
-                        <div className={styles.single}>
+                        <div className={styles.single}key={marketPlace.id}>
                                 <div className={styles.detailInfo}>
                                 <div className={styles.userInfoStyle}>
                                     <div className={styles.nameStyle}>{marketPlace.name}</div>

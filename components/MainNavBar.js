@@ -14,17 +14,17 @@ const MainNavBar = () => {
   return (
     <div className={styles.NavStyle}>
       <Link className={styles.logoStyle} href="/Homepage">
-        <Image src="/logo.jpg" height={55} width={220}></Image></Link>
+        <Image src="/logo.jpg" alt="logo" height={55} width={220}></Image></Link>
         <div className={styles.navbarItemsStyle}>
           <Link className={styles.navLinkStyle} href="/Buyer/Products">Products</Link>
+          <Link className={styles.navLinkStyle} href="/ProductSupplier/Order">Order</Link>
           <Link className={styles.navLinkStyle} href="/AgriMaterial">Agriculture Materials</Link>
           <Link className={styles.navLinkStyle} href="/MarketAnalysis">Market analysis</Link>
-          <Link className={styles.navLinkStyle} href="/ProductSupplier/History">History</Link>
           <Link className={styles.navLinkStyle} href="/AboutUs">About us</Link>
 
         </div>
       <div>
-        <Image onClick={handleSubmit} className={styles.profilePictureStyle} src="/user.jpg" width={50} height={50}></Image>
+        <Image onClick={handleSubmit} className={styles.mainNavPic} src="/user.jpg" width={50} height={50}></Image>
       </div>
 
     </div>

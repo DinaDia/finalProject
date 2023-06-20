@@ -17,7 +17,7 @@ export const LayOut = ({children}) => {
       </div>
     )    
   }
-  else if(router.pathname =="/ProductSupplier" || router.pathname =="/ProductSupplier/History" ){
+  else if(router.pathname =="/ProductSupplier" || router.pathname =="/ProductSupplier/Order" ){
     return(
       <div>
         <MainNavBar/>

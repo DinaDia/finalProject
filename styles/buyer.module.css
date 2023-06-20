@@ -263,10 +263,11 @@
 }
 .ProductHeaderTextStyle{
   font-size: 35px;
-  margin: 25px 0px 0px 100px;
+  max-width: 900px;
+  margin: auto;
 }
 .productName{
-  max-width: 1300px;
+  max-width: 600px;
   margin: auto;
   margin-top: 20px;
   font-size: 25px;
@@ -274,23 +275,33 @@
   font-weight: bold;
   margin-bottom: 15px;
 }
+.orderStyle{
+  max-width: 850px;
+}
+.orderStyle:hover{
+  padding: 20px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
 .speciation{
   margin-top: 70px;
   border-top: 3px #eaeaecdc solid;
-  max-width: 1200px;
+  max-width: 600px;
   margin: auto;
 }
 .speciationText{
   font-size: 20px;
-  margin-left: 35px;
+  margin-left: 15px;
   margin-top: 5px;
 }
 .productSpecification{
-  background-color: #15aabf;
+  font-size: 18px;
+  margin-bottom: 35px;
 }
 .farmStyle{
   border-radius: 5px;
-  margin-left: 75px;
+  margin: auto;
 }
 
 .sideBarStyle {
@@ -432,4 +443,17 @@
   border-radius: 20px;
   margin: 5px;
   cursor: pointer;
+}
+.orderBox{
+  width: 320px;
+  justify-content: right;
+  margin-right: 120px;
+  padding: 20px;
+  margin-top: 100px;
+  border: 3px solid #dee2e6;
+  border-radius: 8px;
+}
+
+.orderText{
+  font-size: 20px;
 }

@@ -8,7 +8,7 @@ const NavBar = () => {
   return (
     <div className={styles.NavStyle}>
       <Link className={styles.logoStyle} href="/Homepage">
-        <Image src="/logo.jpg" height={55} width={220}></Image></Link>
+        <Image src="/logo.jpg" alt=" logo"height={55} width={220}></Image></Link>
       <div className={styles.navbarItemsStyle}>
         <Link className={styles.navLinkStyle} href="/AccountSetup/Login">Products</Link>
         <Link className={styles.navLinkStyle} href="/AccountSetup/Login">Suppliers</Link>

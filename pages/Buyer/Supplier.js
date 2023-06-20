@@ -30,7 +30,7 @@ const Supplier = ({farmers}) => {
                         <Link href={'/Buyer/'+ farmer.id} key={farmer.id} className={styles.single}>
                             <div>
                                 <div className={styles.detailInfo}>
-                                <Image className={styles.profilePictureStyle} src="/user.jpg" width={70} height={60}></Image>
+                                <Image className={styles.profilePictureStyle} alt="profile picture" src="/user.jpg" width={70} height={60}></Image>
                                 <div className={styles.userInfoStyle}>
                                     <div className={styles.nameStyle}>{farmer.Name}</div>
                                     <div className={styles.locationStyle}>Based at {farmer.Location}</div>

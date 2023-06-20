@@ -7,9 +7,11 @@ export const getStaticPaths= async()=>{
   const res= await fetch('http://localhost:8000/farmers');
   const data= await res.json();
 
+
   const paths=data.map(farmer=>{
     return{
-      params: {id: farmer.id.toString()}
+      params: {id: farmer.id.toString()
+}
     }
   })
 
@@ -24,12 +26,20 @@ export const getStaticProps= async(context)=>{
   const res= await fetch('http://localhost:8000/farmers/' + id);
   const data= await res.json();
 
+  const resTwo= await fetch('http://localhost:8000/farmerAvailableProducts');
+  const dataTwo= await resTwo.json();
+
+
   return{
-    props:{farmer: data} 
+    props:{
+      farmer: data,
+      farmerAvailableProducts: dataTwo
+
+    } 
   }
 }
 
-const SupplierDetails = ({farmer}) => {
+const SupplierDetails = ({farmer, farmerAvailableProducts}) => {
   return (
     <div>
       <Head>
@@ -40,7 +50,7 @@ const SupplierDetails = ({farmer}) => {
         <div className={styles.mainAreaStyle}>
           <div>
             <div className={styles.detailInfo}>
-              <Image className={styles.profilePictureStyle} src="/user.jpg" width={70} height={60}></Image>
+              <Image className={styles.profilePictureStyle} src="/user.jpg" alt="profile picture" width={70} height={60}></Image>
               <div className={styles.userInfoStyle}>
                 <div className={styles.nameStyle}>{farmer.Name}</div>
                 <div className={styles.locationStyle}>Based at {farmer.Location}</div>
@@ -77,21 +87,39 @@ const SupplierDetails = ({farmer}) => {
         
       </div>
 
+
+
       <div className={styles.productList}>
-        <h1 className={styles.ProductHeaderTextStyle}>List of available products</h1>
-        <div className={styles.productName}>Coffee</div>
-        <div className={styles.speciation}>
-          <h3 className={styles.speciationText}>Product specification</h3>
-          <div className={styles.productSpecification}>
-            <div>Class</div>
-
-          </div>
-        </div>
-
-        <div className={styles.speciation}>
-          <h3 className={styles.speciationText}>Environment</h3>
-          <Image className={styles.farmStyle} src="/farm.jpg" width={500} height={250}></Image>
+      <h1 className={styles.ProductHeaderTextStyle}>List of available products</h1>
+      
+    
+      {farmerAvailableProducts.map((product)=>{
+        return(
           
+            
+            <div className={styles.orderStyle} key={product.id}>
+            <div className={styles.productName}>{product.name}</div>
+            <div className={styles.speciation}>
+              <h3 className={styles.speciationText}>Product specification</h3>
+              <div className={styles.productSpecification}>
+                <div>Product type: {product.productType}</div>
+                <div>Availability: {product.availability}</div>
+                <div>Price: {product.price}</div>
+
+              </div>
+            </div>
+            </div>
+
+        )
+      })}
+
+        <div className={styles.orderStyle} >
+
+          <div className={styles.speciation}>
+            <h3 className={styles.speciationText}>Environment</h3>
+            <Image className={styles.farmStyle} src="/farm.jpg" alt="profile picture" width={500} height={250}></Image>
+          
+          </div>
         </div>
 
       </div>

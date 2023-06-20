@@ -42,38 +42,41 @@ const SignupOne = ({firstSubmit}) => {
         <form className={styles.signUpFormStyle}>
             <label className={styles.labelStyle}>Full name</label>
 
-            <input className={styles.inputStyle} type="text"
+            <input required className={styles.inputStyle} type="text"
              placeholder='Full Name'
-             value={name}
+             value={name} 
              onChange={(e)=>setName(e.target.value)}  />
 
 
             <label className={styles.labelStyle}>Location</label>
 
             <select className={styles.optionStyle}
-             value={city} 
+             value={city}  required
              onChange={(e)=>setCity(e.target.value)}
              >
                   <option hidden>Select City</option>
-                  <option value="AA">Addis Ababa</option>
-                  <option value="Gonder">Gonder</option>
-                  <option value="Harar">Harar</option>
+                  <option value="ArbaMinch">Arba Minch</option>
                   <option value="Adama">Adama</option>
+                  <option value="BahirDar">Bahir Dar</option>
+                  <option value="DireDawa">Dire Dawa</option>
+                  <option value="Gondar">Gondar</option>
                   <option value="Hawassa">Hawassa</option>
-
+                  <option value="Jijiga">Jijiga</option>
+                  <option value="Jimma">Jimma</option>
+                  <option value="Mekelle">Mekelle</option>
              </select>
 
 
             <label className={styles.labelStyle}>Email address</label>
 
             <input className={styles.inputStyle} type="text"
-             placeholder='Email address' value={email}
+             placeholder='Email address' value={email} required
              onChange={(e)=>setEmail(e.target.value)}  />
 
             <label className={styles.labelStyle}>Password</label>
 
             <input className={styles.inputStyle} type="text"
-             placeholder='Password'
+             placeholder='Password' required
              value={passWord}
              onChange={(e)=>setPassWord(e.target.value)}  />
 
