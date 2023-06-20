@@ -1,13 +1,10 @@
 const mongoose = require("mongoose");
-const passportLocalMongoose = require('passport-local-mongoose');
+
 const Schema = mongoose.Schema;
+const bcrypt=require('bcryptjs')
 
 const FarmerSchema = new Schema({
-  firstName: {
-    type: String,
-    required: true,
-  },
-  lastName: {
+  name: {
     type: String,
     required: true,
   },
@@ -56,10 +53,23 @@ const FarmerSchema = new Schema({
       // Additional product details as needed
     },
   ],
+  password:{
+    type:String,
+    required:true
+  }
+},{
+  timestamps:true
 });
 
-// Add the passport-local-mongoose plugin to the FarmerSchema
-FarmerSchema.plugin(passportLocalMongoose);
+FarmerSchema.pre("save",async function(next){
+  if(!this.isModified("password")){
+    return next()
+  }
+  const salt=await bcrypt.genSalt(10)
+  const hashed=await bcrypt.hash(this.password,salt)
+  this.password=hashed
+  next()
+})
 
 // Create a geospatial index on the location field
 FarmerSchema.index({ location: '2dsphere' });
